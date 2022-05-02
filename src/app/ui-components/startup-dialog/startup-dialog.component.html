@@ -8,7 +8,7 @@
         <mat-label>Roboter wählen</mat-label>
         <mat-select matInput formControlName="firstCtrl">
           <mat-option *ngFor="let robot of robots" [value]="robot">
-            {{ robot.getName() }}
+            {{ robot.name }}
           </mat-option>
         </mat-select>
       </mat-form-field>

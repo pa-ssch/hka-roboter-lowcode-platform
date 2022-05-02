@@ -8,6 +8,6 @@ import { IRoboterAdapter } from '../adapter-definition/adapter-definition.module
 })
 export class VectorAdapterModule {
   public static GetAdapter(): IRoboterAdapter {
-    return { getName: () => 'Vector' };
+    return { name: 'Vector' };
   }
 }

@@ -8,5 +8,5 @@ import { CommonModule } from '@angular/common';
 export class AdapterDefinitionModule {}
 
 export interface IRoboterAdapter {
-  getName(): string;
+  readonly name: string;
 }

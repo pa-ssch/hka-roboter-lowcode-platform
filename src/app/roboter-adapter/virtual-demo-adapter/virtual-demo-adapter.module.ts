@@ -8,6 +8,6 @@ import { IRoboterAdapter } from '../adapter-definition/adapter-definition.module
 })
 export class VirtualDemoAdapterModule {
   public static GetAdapter(): IRoboterAdapter {
-    return { getName: () => 'Virtueller Demo Roboter' };
+    return { name: 'Virtueller Demo Roboter' };
   }
 }
