@@ -8,6 +8,12 @@ import { IRoboterAdapter } from '../adapter-definition/adapter-definition.module
 })
 export class VectorAdapterModule {
   public static GetAdapter(): IRoboterAdapter {
-    return { name: 'Vector' };
+    return {
+      name: 'Vector',
+      getParameter: () => [
+        { name: 'Adresse des Roboters', valueType: 'string' },
+        { name: 'Entwicklermodus', valueType: 'boolean' },
+      ],
+    };
   }
 }

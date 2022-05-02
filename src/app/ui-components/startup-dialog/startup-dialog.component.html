@@ -1,12 +1,12 @@
 <mat-stepper [linear]="true" #stepper>
-  <mat-step [stepControl]="firstFormGroup">
-    <form [formGroup]="firstFormGroup">
+  <mat-step [stepControl]="selectRobotFormGroup">
+    <form [formGroup]="selectRobotFormGroup">
       <h1>Welcher Roboter soll programmiert werden?</h1>
       <br />
       <ng-template matStepLabel>Roboter wählen</ng-template>
       <mat-form-field appearance="fill">
         <mat-label>Roboter wählen</mat-label>
-        <mat-select matInput formControlName="firstCtrl">
+        <mat-select matInput formControlName="selectedRobot">
           <mat-option *ngFor="let robot of robots" [value]="robot">
             {{ robot.name }}
           </mat-option>
@@ -17,20 +17,33 @@
       </div>
     </form>
   </mat-step>
-  <mat-step [stepControl]="secondFormGroup" label="Parameter definieren">
-    <form [formGroup]="secondFormGroup">
-      <mat-form-field appearance="fill">
-        <mat-label>Address</mat-label>
-        <input
-          matInput
-          formControlName="secondCtrl"
-          placeholder="Ex. 1 Main St, New York, NY"
-          required
-        />
-      </mat-form-field>
+  <mat-step [stepControl]="parameterFormGroup" label="Parameter definieren">
+    <form [formGroup]="parameterFormGroup">
+      <div *ngIf="selectRobotFormGroup.value.selectedRobot">
+        <h1>
+          Es wird
+          {{ selectRobotFormGroup.value.selectedRobot.name }} programmiert.
+          Hierfür werden
+          {{ selectRobotFormGroup.value.selectedRobot.getParameter().length }}
+          Parameter benötigt:
+        </h1>
+        <mat-form-field
+          appearance="fill"
+          *ngFor="
+            let parameter of selectRobotFormGroup.value.selectedRobot.getParameter();
+            let indexOfelement = index
+          "
+        >
+          <mat-label>{{ parameter.name }}</mat-label>
+          <input
+            matInput
+            [formControlName]="'parameter' + (indexOfelement + 1)"
+          />
+        </mat-form-field>
+      </div>
       <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button matStepperPrevious>Zurück</button>
+        <button mat-button matStepperNext>Weiter</button>
       </div>
     </form>
   </mat-step>

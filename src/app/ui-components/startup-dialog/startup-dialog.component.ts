@@ -10,8 +10,8 @@ import { VirtualDemoAdapterModule } from 'src/app/roboter-adapter/virtual-demo-a
   styleUrls: ['./startup-dialog.component.sass'],
 })
 export class StartupDialogComponent implements OnInit {
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
+  selectRobotFormGroup: FormGroup;
+  parameterFormGroup: FormGroup;
   robots: IRobotAdapter[] = [
     VectorAdapterModule.GetAdapter(),
     VirtualDemoAdapterModule.GetAdapter(),
@@ -20,11 +20,26 @@ export class StartupDialogComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder) {}
 
   ngOnInit() {
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required],
+    // Initialize the select robot form controls
+    this.selectRobotFormGroup = this._formBuilder.group({
+      selectedRobot: ['', Validators.required],
     });
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required],
-    });
+
+    // Initialize the parameter form controls
+    let maximumParameterCount = Math.max.apply(
+      Math,
+      this.robots.map((robot) => robot.getParameter().length)
+    );
+
+    let parameterNumbers = Array.from(
+      { length: maximumParameterCount },
+      (_v, k) => k + 1
+    );
+    let parameterFormControls = parameterNumbers.reduce(
+      (a, v) => ({ ...a, ['parameter' + v]: ['', Validators.required] }),
+      {}
+    );
+
+    this.parameterFormGroup = this._formBuilder.group(parameterFormControls);
   }
 }
