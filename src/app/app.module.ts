@@ -5,11 +5,33 @@ import { AppComponent } from './app.component';
 import { DebuggerComponent } from './ui-components/debugger/debugger.component';
 import { DesignerComponent } from './ui-components/designer/designer.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatStepperModule } from '@angular/material/stepper';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { WorkspaceComponent } from './ui-components/workspace/workspace.component';
+import { StartupDialogComponent } from './ui-components/startup-dialog/startup-dialog.component';
+import { LoginDialogComponent } from './ui-components/login-dialog/login-dialog.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent, DebuggerComponent, DesignerComponent],
-  imports: [BrowserModule, MatTabsModule, BrowserAnimationsModule],
+  declarations: [
+    AppComponent,
+    DebuggerComponent,
+    DesignerComponent,
+    WorkspaceComponent,
+    StartupDialogComponent,
+    LoginDialogComponent,
+  ],
+  imports: [
+    BrowserModule,
+    MatTabsModule,
+    BrowserAnimationsModule,
+    MatStepperModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
