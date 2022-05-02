@@ -13,9 +13,7 @@ export class LoginDialogComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder) {}
 
   ngOnInit() {
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required],
-    });
+    this.firstFormGroup = this._formBuilder.group({});
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required],
     });

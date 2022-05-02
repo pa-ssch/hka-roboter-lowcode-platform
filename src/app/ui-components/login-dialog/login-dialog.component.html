@@ -2,17 +2,9 @@
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup">
       <ng-template matStepLabel>Willkommen</ng-template>
-      <mat-form-field appearance="fill">
-        <mat-label>Name</mat-label>
-        <input
-          matInput
-          placeholder="Last name, First name"
-          formControlName="firstCtrl"
-          required
-        />
-      </mat-form-field>
+      <mat-label>Hallo, ich bin ein Roboter</mat-label>
       <div>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button matStepperNext>Weiter</button>
       </div>
     </form>
   </mat-step>
