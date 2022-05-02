@@ -1,18 +1,19 @@
 <mat-stepper [linear]="true" #stepper>
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup">
+      <h1>Welcher Roboter soll programmiert werden?</h1>
+      <br />
       <ng-template matStepLabel>Roboter wählen</ng-template>
       <mat-form-field appearance="fill">
-        <mat-label>Name</mat-label>
-        <input
-          matInput
-          placeholder="Last name, First name"
-          formControlName="firstCtrl"
-          required
-        />
+        <mat-label>Roboter wählen</mat-label>
+        <mat-select matInput formControlName="firstCtrl">
+          <mat-option *ngFor="let robot of robots" [value]="robot">
+            {{ robot.getName() }}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
       <div>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button matStepperNext>Weiter</button>
       </div>
     </form>
   </mat-step>
