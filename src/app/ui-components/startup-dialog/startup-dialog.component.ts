@@ -32,29 +32,28 @@ export class StartupDialogComponent implements OnInit {
       this.robots.map((robot) => robot.parameter.length)
     );
 
-    let parameterNumbers = Array.from(
-      { length: maximumParameterCount },
-      (_v, k) => k + 1
-    );
-    let parameterFormControls = parameterNumbers.reduce(
-      (a, v) => ({ ...a, ['parameter' + v]: ['', Validators.required] }),
-      {}
+    let parameterFormControls = Object.fromEntries(
+      Array.from({ length: maximumParameterCount }, (_, k) => [
+        'parameter' + (k + 1),
+        ['', Validators.required],
+      ])
     );
 
     this.parameterFormGroup = this._formBuilder.group(parameterFormControls);
   }
 
   commit() {
-    alert('alles eingegeben -> loginpage anzeigen');
+    alert(
+      'alles klar, das speichere ich jetzt in einem cookie (masterPasswort verschlüsselt)'
+    );
+    // cookie speichern
+    window.location.reload();
   }
 
   validateParameterAndGoToNextStep(stepper: MatStepper) {
-    let parameterValues = [];
-    for (let parameterKey in this.parameterFormGroup.controls) {
-      parameterValues.push(
-        this.parameterFormGroup.controls[parameterKey].value
-      );
-    }
+    let parameterValues = Object.values(this.parameterFormGroup.controls).map(
+      (c) => c.value
+    );
 
     let errorMessage =
       this.selectRobotFormGroup.value.selectedRobot.validateParameter(
