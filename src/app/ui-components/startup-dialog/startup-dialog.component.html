@@ -54,6 +54,13 @@
             [formControlName]="'parameter' + (indexOfelement + 1)"
           />
         </mat-form-field>
+        <mat-form-field class="cdk-visually-hidden">
+          <mat-label
+            >wird nie angezeigt. ist erforderlich, weil eine Form mindestens ein
+            form-field haben muss</mat-label
+          >
+          <input matInput formControlName="parameter0" />
+        </mat-form-field>
       </div>
       <div>
         <button mat-button matStepperPrevious>Zurück</button>
@@ -63,12 +70,28 @@
       </div>
     </form>
   </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Administrator Passwort festlegen</ng-template>
-    <p>You are now done.</p>
-    <div>
-      <button mat-button matStepperPrevious>Zurück</button>
-      <button mat-button (click)="commit()">Abschließen</button>
-    </div>
+  <mat-step
+    [stepControl]="parameterFormGroup"
+    label="Administrator Passwort festlegen"
+  >
+    <form [formGroup]="passwordFormGroup">
+      <h1>
+        Zum Abschluss der Einrichtung muss ein Passwort gesetzt werden, damit
+        Benutzer nicht auf die Einstellungen der Anwendung zugreifen können
+      </h1>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Passwort für Einstellungen</mat-label>
+        <input matInput formControlName="masterPassword" type="password" />
+      </mat-form-field>
+      <p>
+        Falls das Passwort verloren geht, kann jederzeit das Masterpasswort aus
+        dem Handbuch verwendet werden
+      </p>
+      <div>
+        <button mat-button matStepperPrevious>Zurück</button>
+        <button mat-button (click)="commit()">Abschließen</button>
+      </div>
+    </form>
   </mat-step>
 </mat-stepper>

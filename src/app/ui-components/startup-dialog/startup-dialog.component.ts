@@ -13,6 +13,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class StartupDialogComponent implements OnInit {
   selectRobotFormGroup: FormGroup;
   parameterFormGroup: FormGroup;
+  passwordFormGroup: FormGroup;
   robots: IRobotAdapter[] = AdapterRegistration.getRegisteredAdapter();
 
   constructor(
@@ -33,20 +34,26 @@ export class StartupDialogComponent implements OnInit {
     );
 
     let parameterFormControls = Object.fromEntries(
-      Array.from({ length: maximumParameterCount }, (_, k) => [
-        'parameter' + (k + 1),
+      Array.from({ length: maximumParameterCount + 1 }, (_, k) => [
+        'parameter' + k,
         ['', Validators.required],
       ])
     );
 
     this.parameterFormGroup = this._formBuilder.group(parameterFormControls);
+    this.parameterFormGroup.controls['parameter0'].setValue('n.a.');
+
+    // Initialize the password form control
+    this.passwordFormGroup = this._formBuilder.group({
+      masterPassword: ['', Validators.required],
+    });
   }
 
   commit() {
     alert(
       'alles klar, das speichere ich jetzt in einem cookie (masterPasswort verschlüsselt)'
     );
-    // cookie speichern
+    // TODO: save it in a cookie
     window.location.reload();
   }
 
@@ -54,6 +61,7 @@ export class StartupDialogComponent implements OnInit {
     let parameterValues = Object.values(this.parameterFormGroup.controls).map(
       (c) => c.value
     );
+    parameterValues.shift();
 
     let errorMessage =
       this.selectRobotFormGroup.value.selectedRobot.validateParameter(
@@ -68,6 +76,9 @@ export class StartupDialogComponent implements OnInit {
           duration: 3000,
         }
       );
-    else stepper.next();
+    else {
+      //TODO: does not work for virtual demo adapter (works when page three was visited via vector)
+      stepper.next();
+    }
   }
 }

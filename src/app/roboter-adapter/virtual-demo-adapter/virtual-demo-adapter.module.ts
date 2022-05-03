@@ -11,7 +11,7 @@ export class VirtualDemoAdapterModule {
     return {
       name: 'Virtueller Demo Roboter',
       parameter: [],
-      validateParameter: (_parameterValues) => '',
+      validateParameter: (_) => '',
     };
   }
 }
