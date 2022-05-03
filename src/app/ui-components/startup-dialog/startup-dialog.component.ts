@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IRoboterAdapter as IRobotAdapter } from 'src/app/roboter-adapter/adapter-definition/adapter-definition.module';
-import { VectorAdapterModule } from 'src/app/roboter-adapter/vector-adapter/vector-adapter.module';
-import { VirtualDemoAdapterModule } from 'src/app/roboter-adapter/virtual-demo-adapter/virtual-demo-adapter.module';
+import { MatStepper } from '@angular/material/stepper';
+import { AdapterRegistration } from 'src/app/app.adapterRegistration';
+import { IRobotAdapter } from 'src/app/roboter-adapter/adapter-definition/adapter-definition.module';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-startup-dialog',
@@ -12,12 +13,12 @@ import { VirtualDemoAdapterModule } from 'src/app/roboter-adapter/virtual-demo-a
 export class StartupDialogComponent implements OnInit {
   selectRobotFormGroup: FormGroup;
   parameterFormGroup: FormGroup;
-  robots: IRobotAdapter[] = [
-    VectorAdapterModule.GetAdapter(),
-    VirtualDemoAdapterModule.GetAdapter(),
-  ];
+  robots: IRobotAdapter[] = AdapterRegistration.getRegisteredAdapter();
 
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(
+    private _formBuilder: FormBuilder,
+    private _snackBar: MatSnackBar
+  ) {}
 
   ngOnInit() {
     // Initialize the select robot form controls
@@ -28,7 +29,7 @@ export class StartupDialogComponent implements OnInit {
     // Initialize the parameter form controls
     let maximumParameterCount = Math.max.apply(
       Math,
-      this.robots.map((robot) => robot.getParameter().length)
+      this.robots.map((robot) => robot.parameter.length)
     );
 
     let parameterNumbers = Array.from(
@@ -41,5 +42,33 @@ export class StartupDialogComponent implements OnInit {
     );
 
     this.parameterFormGroup = this._formBuilder.group(parameterFormControls);
+  }
+
+  commit() {
+    alert('alles eingegeben -> loginpage anzeigen');
+  }
+
+  validateParameterAndGoToNextStep(stepper: MatStepper) {
+    let parameterValues = [];
+    for (let parameterKey in this.parameterFormGroup.controls) {
+      parameterValues.push(
+        this.parameterFormGroup.controls[parameterKey].value
+      );
+    }
+
+    let errorMessage =
+      this.selectRobotFormGroup.value.selectedRobot.validateParameter(
+        parameterValues
+      );
+
+    if (errorMessage)
+      this._snackBar.open(
+        `Die eingegebenen Parameter sind nicht gültig: ${errorMessage}`,
+        'Ok',
+        {
+          duration: 3000,
+        }
+      );
+    else stepper.next();
   }
 }

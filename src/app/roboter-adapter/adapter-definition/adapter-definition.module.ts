@@ -7,9 +7,11 @@ import { CommonModule } from '@angular/common';
 })
 export class AdapterDefinitionModule {}
 
-export interface IRoboterAdapter {
+export interface IRobotAdapter {
   readonly name: string;
-  getParameter(): IParameterDefinition[];
+  readonly parameter: IParameterDefinition[];
+
+  validateParameter(parameterValues: (string | number | boolean)[]): string;
 }
 
 export interface IParameterDefinition {

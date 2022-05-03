@@ -24,26 +24,42 @@
           Es wird
           {{ selectRobotFormGroup.value.selectedRobot.name }} programmiert.
           Hierfür werden
-          {{ selectRobotFormGroup.value.selectedRobot.getParameter().length }}
+          {{ selectRobotFormGroup.value.selectedRobot.parameter.length }}
           Parameter benötigt:
         </h1>
         <mat-form-field
           appearance="fill"
           *ngFor="
-            let parameter of selectRobotFormGroup.value.selectedRobot.getParameter();
+            let parameter of selectRobotFormGroup.value.selectedRobot.parameter;
             let indexOfelement = index
           "
         >
           <mat-label>{{ parameter.name }}</mat-label>
           <input
+            *ngIf="parameter.valueType === 'string'"
             matInput
+            [formControlName]="'parameter' + (indexOfelement + 1)"
+          />
+          <mat-select
+            *ngIf="parameter.valueType === 'boolean'"
+            [formControlName]="'parameter' + (indexOfelement + 1)"
+          >
+            <mat-option [value]="true">Ja</mat-option>
+            <mat-option [value]="false">Nein</mat-option>
+          </mat-select>
+          <input
+            *ngIf="parameter.valueType === 'number'"
+            matInput
+            type="number"
             [formControlName]="'parameter' + (indexOfelement + 1)"
           />
         </mat-form-field>
       </div>
       <div>
         <button mat-button matStepperPrevious>Zurück</button>
-        <button mat-button matStepperNext>Weiter</button>
+        <button mat-button (click)="validateParameterAndGoToNextStep(stepper)">
+          Weiter
+        </button>
       </div>
     </form>
   </mat-step>
@@ -51,8 +67,8 @@
     <ng-template matStepLabel>Administrator Passwort festlegen</ng-template>
     <p>You are now done.</p>
     <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
+      <button mat-button matStepperPrevious>Zurück</button>
+      <button mat-button (click)="commit()">Abschließen</button>
     </div>
   </mat-step>
 </mat-stepper>

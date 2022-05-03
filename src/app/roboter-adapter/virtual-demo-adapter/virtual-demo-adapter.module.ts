@@ -1,16 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IRoboterAdapter } from '../adapter-definition/adapter-definition.module';
+import { IRobotAdapter } from '../adapter-definition/adapter-definition.module';
 
 @NgModule({
   declarations: [],
   imports: [CommonModule],
 })
 export class VirtualDemoAdapterModule {
-  public static GetAdapter(): IRoboterAdapter {
+  public static getAdapter(): IRobotAdapter {
     return {
       name: 'Virtueller Demo Roboter',
-      getParameter: () => [],
+      parameter: [],
+      validateParameter: (_parameterValues) => '',
     };
   }
 }
