@@ -11,6 +11,12 @@ export class AdapterRegistration {
   public static getRegisteredAdapter(): IRobotAdapter[] {
     return this.registeredAdapter;
   }
+
+  public static getAdapterByIdentifier(identifier: string): IRobotAdapter {
+    return this.registeredAdapter.find(
+      (adapter) => adapter.identifier === identifier
+    );
+  }
 }
 
 AdapterRegistration.register(VectorAdapterModule.getAdapter());

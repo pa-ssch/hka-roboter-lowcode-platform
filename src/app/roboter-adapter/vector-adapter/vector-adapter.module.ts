@@ -9,6 +9,7 @@ import { IRobotAdapter } from '../adapter-definition/adapter-definition.module';
 export class VectorAdapterModule {
   public static getAdapter(): IRobotAdapter {
     return {
+      identifier: 'vector-robot',
       name: 'Vector',
       parameter: [
         { name: 'Adresse des Roboters', valueType: 'string' },

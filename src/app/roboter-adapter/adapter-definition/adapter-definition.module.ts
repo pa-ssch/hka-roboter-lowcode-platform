@@ -1,4 +1,4 @@
-import { NgModule, Type } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @NgModule({
@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 export class AdapterDefinitionModule {}
 
 export interface IRobotAdapter {
+  readonly identifier: string;
   readonly name: string;
   readonly parameter: IParameterDefinition[];
 

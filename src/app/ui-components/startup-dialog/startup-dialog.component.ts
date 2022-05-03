@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
-import { AdapterRegistration } from 'src/app/app.adapterRegistration';
+import { AdapterRegistration } from 'src/app/app.adapter-registration';
 import { IRobotAdapter } from 'src/app/roboter-adapter/adapter-definition/adapter-definition.module';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CookieService } from 'ngx-cookie-service';
+import { CookieManager } from 'src/app/app.cookiemanager';
 
 @Component({
   selector: 'app-startup-dialog',
@@ -18,7 +20,8 @@ export class StartupDialogComponent implements OnInit {
 
   constructor(
     private _formBuilder: FormBuilder,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private _cookieService: CookieService
   ) {}
 
   ngOnInit() {
@@ -50,10 +53,22 @@ export class StartupDialogComponent implements OnInit {
   }
 
   commit() {
-    alert(
-      'alles klar, das speichere ich jetzt in einem cookie (masterPasswort verschlüsselt)'
+    this._cookieService.set(
+      CookieManager.RobotTypeCookieName,
+      this.selectRobotFormGroup.value.selectedRobot.identifier
     );
-    // TODO: save it in a cookie
+    this._cookieService.set(
+      CookieManager.MasterPasswordCookieName,
+      this.passwordFormGroup.value.masterPassword
+    );
+    let parameterValues = Object.values(this.parameterFormGroup.controls).map(
+      (c) => c.value
+    );
+    parameterValues.shift();
+    this._cookieService.set(
+      CookieManager.ParameterCookieName,
+      JSON.stringify(parameterValues)
+    );
     window.location.reload();
   }
 
@@ -77,7 +92,7 @@ export class StartupDialogComponent implements OnInit {
         }
       );
     else {
-      //TODO: does not work for virtual demo adapter (works when page three was visited via vector)
+      //TODO: does not work for virtual demo adapter (works when page three was visited via vector); because all are required, also when not visible
       stepper.next();
     }
   }

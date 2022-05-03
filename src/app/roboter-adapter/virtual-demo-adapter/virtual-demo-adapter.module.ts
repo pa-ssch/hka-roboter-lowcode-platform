@@ -9,6 +9,7 @@ import { IRobotAdapter } from '../adapter-definition/adapter-definition.module';
 export class VirtualDemoAdapterModule {
   public static getAdapter(): IRobotAdapter {
     return {
+      identifier: 'virtual-demo-robot',
       name: 'Virtueller Demo Roboter',
       parameter: [],
       validateParameter: (_) => '',
