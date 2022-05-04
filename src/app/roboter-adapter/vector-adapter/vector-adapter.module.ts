@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IRobotAdapter } from '../adapter-definition/adapter-definition.module';
+import { AdapterDefinition } from './vector-adapter.definition';
 
 @NgModule({
   declarations: [],
@@ -8,17 +9,6 @@ import { IRobotAdapter } from '../adapter-definition/adapter-definition.module';
 })
 export class VectorAdapterModule {
   public static getAdapter(): IRobotAdapter {
-    return {
-      identifier: 'vector-robot',
-      name: 'Vector',
-      parameter: [
-        { name: 'Adresse des Roboters', valueType: 'string' },
-        { name: 'Entwicklermodus', valueType: 'boolean' },
-      ],
-      validateParameter: (parameterValues) => {
-        if (parameterValues[0] == 'localhost:1234') return '';
-        else return 'Der Roboter ist nicht erreichbar';
-      },
-    };
+    return new AdapterDefinition();
   }
 }

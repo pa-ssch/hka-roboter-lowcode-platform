@@ -19,3 +19,10 @@ export interface IParameterDefinition {
   readonly name: string;
   readonly valueType: 'string' | 'number' | 'boolean';
 }
+
+export class ParameterDefinition implements IParameterDefinition {
+  constructor(
+    public readonly name: string,
+    public readonly valueType: 'string' | 'number' | 'boolean'
+  ) {}
+}
