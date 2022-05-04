@@ -19,6 +19,7 @@ export class AppComponent {
       CookieManager.RobotTypeCookieName
     );
 
+    //TODO: error when the cookie is empty or does not exists
     let parameterValues = JSON.parse(
       this._cookieService.get(CookieManager.ParameterCookieName)
     );
