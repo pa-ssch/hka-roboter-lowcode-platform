@@ -2,7 +2,7 @@ name: Build and Deploy
 
 on:
   push:
-    branches: [main]
+    branches: [master]
 
 jobs:
   update:
@@ -12,10 +12,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Setup Node 13
+      - name: Setup Node 18
         uses: actions/setup-node@v1
         with:
-          node-version: "13"
+          node-version: "18"
 
       - name: Build
         run: |
@@ -27,5 +27,4 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
-          FOLDER: docs
           CLEAN: true
