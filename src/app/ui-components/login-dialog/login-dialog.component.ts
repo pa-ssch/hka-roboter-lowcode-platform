@@ -32,11 +32,13 @@ export class LoginDialogComponent implements OnInit {
   }
 
   commit() {
-    this._cookieService.set(
-      CookieManager.CurrentUserName,
-      this.nameFormGroup.value.name
-    );
-    //TODO: use indexedDB for the user management
-    window.location.reload();
+    if (this.nameFormGroup.value.name) {
+      this._cookieService.set(
+        CookieManager.CurrentUserName,
+        this.nameFormGroup.value.name
+      );
+      //TODO: use indexedDB for the user management
+      window.location.reload();
+    }
   }
 }
