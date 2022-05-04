@@ -1,36 +1,29 @@
 <mat-stepper [linear]="true" #stepper>
-  <mat-step [stepControl]="firstFormGroup">
-    <form [formGroup]="firstFormGroup">
+  <mat-step>
+    <div class="stepper-content-div">
       <ng-template matStepLabel>Willkommen</ng-template>
-      <mat-label>Hallo, ich bin ein Roboter</mat-label>
+      <h1>
+        Hallo, ich bin <strong>{{ robotAdapter.name }}</strong
+        >!
+      </h1>
+      <h1>möchtest du mich programmieren?</h1>
+      <br />
       <div>
-        <button mat-button matStepperNext>Weiter</button>
+        <button mat-button matStepperNext>Ja!</button>
       </div>
-    </form>
+    </div>
   </mat-step>
-  <mat-step [stepControl]="secondFormGroup" label="Name eingeben">
-    <form [formGroup]="secondFormGroup">
+  <mat-step [stepControl]="nameFormGroup" label="Name eingeben">
+    <form [formGroup]="nameFormGroup">
+      <h1>Dann verrate mir bitte deinen Namen:</h1>
       <mat-form-field appearance="fill">
-        <mat-label>Address</mat-label>
-        <input
-          matInput
-          formControlName="secondCtrl"
-          placeholder="Ex. 1 Main St, New York, NY"
-          required
-        />
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" />
       </mat-form-field>
       <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button matStepperPrevious>Zurück</button>
+        <button mat-button (click)="commit()">Loslegen</button>
       </div>
     </form>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Loslegen</ng-template>
-    <p>You are now done.</p>
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
-    </div>
   </mat-step>
 </mat-stepper>
