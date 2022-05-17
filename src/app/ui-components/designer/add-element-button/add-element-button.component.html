@@ -1,4 +1,9 @@
-<div class="add-button-div">
+<div
+  class="add-button-div"
+  (mousedown)="mousedown($event)"
+  (mousemove)="mousemove($event)"
+  (mouseup)="mouseup($event)"
+>
   <button
     mat-fab
     color="designer-accent"
