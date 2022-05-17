@@ -1,4 +1,5 @@
 import {
+  AdapterParameterType,
   IParameterDefinition,
   IRobotAdapter,
   ParameterDefinition,
@@ -9,8 +10,11 @@ export class AdapterDefinition implements IRobotAdapter {
   name: string = 'Vector';
 
   parameter: IParameterDefinition[] = [
-    new ParameterDefinition('Adresse des Roboters', 'string'),
-    new ParameterDefinition('Entwicklermodus', 'boolean'),
+    new ParameterDefinition(
+      'Adresse des Roboters',
+      AdapterParameterType.string
+    ),
+    new ParameterDefinition('Entwicklermodus', AdapterParameterType.boolean),
   ];
 
   validateParameter(parameterValues: (string | number | boolean)[]): string {
