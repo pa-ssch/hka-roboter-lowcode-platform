@@ -8,8 +8,8 @@ export class RobotFunctinoality implements IRobotFunctionality {
     public readonly identifier: string,
     public readonly type: RobotFunctionalityType,
     public readonly displayName: string,
+    public readonly parameterizedDisplayName: string,
     public readonly resultType: RobotDataType,
-    public requiredArguments: () => IRobotFunctinoalityArgument[],
-    public perform: (...args: IRobotFunctinoalityArgument[]) => RobotDataType
+    public requiredArguments: () => IRobotFunctinoalityArgument[]
   ) {}
 }
