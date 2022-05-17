@@ -4,9 +4,16 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-add-element-button',
   templateUrl: './add-element-button.component.html',
   styleUrls: ['./add-element-button.component.sass'],
+  host: {
+    '[id]': 'id',
+    '[style.position]': 'position',
+    '[style.left]': 'left',
+    '[style.top]': 'top',
+  },
 })
-export class AddElementButtonComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit(): void {}
+export class AddElementButtonComponent {
+  id: string;
+  position: string;
+  left: string;
+  top: string;
 }
