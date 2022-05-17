@@ -1,4 +1,7 @@
+import { RobotDataType } from '../enums/robot-data-type.enum';
+
 export interface IRobotFunctinoalityArgument {
-  //FunctionArguments (id, name, typ)
-  //TODO: do this
+  readonly identifier: string;
+  readonly displayName: string;
+  readonly dataType: RobotDataType;
 }

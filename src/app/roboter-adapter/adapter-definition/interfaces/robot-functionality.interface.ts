@@ -8,5 +8,8 @@ export interface IRobotFunctionality {
   readonly displayName: string;
   readonly allArguments: IRobotFunctinoalityArgument[];
   readonly resultType: RobotDataType;
-  // TODO: reference (callback), generatecleartext, generateScript()
+  // TODO:
+  // how to call this functionality
+  // generate clear text (for this function, some variations)
+  // generate script (for this function, understandable by roboter)
 }
