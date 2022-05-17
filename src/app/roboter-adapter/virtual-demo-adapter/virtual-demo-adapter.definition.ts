@@ -4,25 +4,15 @@ import { IParameterDefinition } from '../adapter-definition/interfaces/parameter
 import { IRobotAdapter } from '../adapter-definition/interfaces/robot-adapter.interface';
 import { IRobotFunctionality } from '../adapter-definition/interfaces/robot-functionality.interface';
 
-export class VectorAdapterDefinition implements IRobotAdapter {
-  identifier: string = 'vector-robot';
-  name: string = 'Vector';
+export class VirtualDemoAdapterDefinition implements IRobotAdapter {
+  identifier: string = 'virtual-demo-robot';
+  name: string = 'Virtueller Demo Roboter';
 
   parameter: IParameterDefinition[] = [
-    new ParameterDefinition(
-      'Adresse des Roboters',
-      AdapterParameterType.string
-    ),
-    new ParameterDefinition('Entwicklermodus', AdapterParameterType.boolean),
+    new ParameterDefinition('Beispiel 1', AdapterParameterType.boolean),
+    new ParameterDefinition('Beispiel 2', AdapterParameterType.number),
   ];
 
   functionality: IRobotFunctionality[] = [];
-
-  validateParameter(parameterValues: (string | number | boolean)[]): string {
-    if (parameterValues[0] == 'localhost:1234') {
-      return '';
-    } else {
-      return 'Der Roboter ist nicht erreichbar';
-    }
-  }
+  validateParameter = (_: AdapterParameterType[]): string => '';
 }
