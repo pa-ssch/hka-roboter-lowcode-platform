@@ -1,6 +1,8 @@
 name: Build and Deploy
 
 on:
+  release:
+    types: [published]
   push:
     branches: [master]
 
@@ -26,6 +28,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BASE_BRANCH: master
           BRANCH: gh-pages
           FOLDER: docs
           CLEAN: true
