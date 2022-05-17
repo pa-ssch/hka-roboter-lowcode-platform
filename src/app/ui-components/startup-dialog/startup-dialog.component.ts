@@ -92,7 +92,7 @@ export class StartupDialogComponent implements OnInit {
         }
       );
     else {
-      //TODO: does not work for virtual demo adapter (works when page three was visited via vector); because all are required, also when not visible
+      //TODO: does not work because all params are required, also when not visible
       stepper.next();
     }
   }
