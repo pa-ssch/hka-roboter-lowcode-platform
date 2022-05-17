@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod --output-path docs --base-href \"https://silasderprofi.github.io/hka-roboter-lowcode-platform/",
+    "build": "ng build --prod --output-path docs --base-href \"https://silasderprofi.github.io/hka-roboter-lowcode-platform/\"",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
