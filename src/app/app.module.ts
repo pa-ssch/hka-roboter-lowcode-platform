@@ -16,7 +16,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatMenuModule } from '@angular/material/menu';
 import { CookieService } from 'ngx-cookie-service';
+import { AddElementButtonComponent } from './ui-components/designer/add-element-button/add-element-button.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,7 @@ import { CookieService } from 'ngx-cookie-service';
     WorkspaceComponent,
     StartupDialogComponent,
     LoginDialogComponent,
+    AddElementButtonComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,6 +42,8 @@ import { CookieService } from 'ngx-cookie-service';
     MatSelectModule,
     MatButtonModule,
     MatSnackBarModule,
+    MatMenuModule,
+    MatIconModule,
   ],
   providers: [CookieService],
   bootstrap: [AppComponent],

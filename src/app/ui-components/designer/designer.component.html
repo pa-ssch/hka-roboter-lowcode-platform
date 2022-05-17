@@ -1,10 +1,9 @@
-<!-- 
+<div id="designer-div">
+  <!-- <div id="add-button-div">
+    <app-add-element-button></app-add-element-button>
+  </div> -->
+  <button (click)="addComponent(draggableComponentClass)">Add</button>
+  <button (click)="removeComponent(draggableComponentClass)">Remove</button>
 
-fester Button zum neuen workflow starten (immer rechts von aktuellen)
-innerhalb eines workflows oder zwischen elementen gibt es auch immer einen Button
-
-
-
-
-    
- -->
+  <ng-template #container> </ng-template>
+</div>
