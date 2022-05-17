@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IRobotAdapter } from '../adapter-definition/adapter-definition.module';
+import { IRobotAdapter } from '../adapter-definition/interfaces/robot-adapter.interface';
 
 @NgModule({
   declarations: [],
@@ -13,6 +13,7 @@ export class VirtualDemoAdapterModule {
       name: 'Virtueller Demo Roboter',
       parameter: [],
       validateParameter: (_) => '',
+      functionality: [],
     };
   }
 }

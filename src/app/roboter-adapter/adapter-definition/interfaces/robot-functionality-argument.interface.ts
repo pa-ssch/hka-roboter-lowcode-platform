@@ -4,4 +4,5 @@ export interface IRobotFunctinoalityArgument {
   readonly identifier: string;
   readonly displayName: string;
   readonly dataType: RobotDataType;
+  readonly value: any;
 }

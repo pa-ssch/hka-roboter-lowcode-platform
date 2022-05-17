@@ -7,6 +7,5 @@ export interface IRobotAdapter {
   readonly name: string;
   readonly parameter: IParameterDefinition[];
   readonly functionality: IRobotFunctionality[];
-
   validateParameter(parameterValues: AdapterParameterType[]): string;
 }

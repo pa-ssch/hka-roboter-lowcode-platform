@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IRobotAdapter } from '../adapter-definition/adapter-definition.module';
 import { AdapterDefinition } from './vector-adapter.definition';
+import { IRobotAdapter } from '../adapter-definition/interfaces/robot-adapter.interface';
 
 @NgModule({
   declarations: [],

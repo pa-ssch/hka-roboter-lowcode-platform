@@ -1,4 +1,4 @@
-import { IRobotAdapter } from './roboter-adapter/adapter-definition/adapter-definition.module';
+import { IRobotAdapter } from 'src/app/roboter-adapter/adapter-definition/interfaces/robot-adapter.interface';
 import { VectorAdapterModule } from './roboter-adapter/vector-adapter/vector-adapter.module';
 import { VirtualDemoAdapterModule } from './roboter-adapter/virtual-demo-adapter/virtual-demo-adapter.module';
 

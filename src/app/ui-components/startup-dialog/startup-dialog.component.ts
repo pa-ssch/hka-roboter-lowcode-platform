@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
 import { AdapterRegistration } from 'src/app/app.adapter-registration';
-import { IRobotAdapter } from 'src/app/roboter-adapter/adapter-definition/adapter-definition.module';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CookieService } from 'ngx-cookie-service';
 import { CookieManager } from 'src/app/app.cookiemanager';
+import { IRobotAdapter } from 'src/app/roboter-adapter/adapter-definition/interfaces/robot-adapter.interface';
 
 @Component({
   selector: 'app-startup-dialog',

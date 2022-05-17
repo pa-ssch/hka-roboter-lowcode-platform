@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { AdapterRegistration } from 'src/app/app.adapter-registration';
 import { CookieManager } from 'src/app/app.cookiemanager';
-import { IRobotAdapter } from 'src/app/roboter-adapter/adapter-definition/adapter-definition.module';
+import { IRobotAdapter } from 'src/app/roboter-adapter/adapter-definition/interfaces/robot-adapter.interface';
 
 @Component({
   selector: 'app-login-dialog',
