@@ -1,33 +1,38 @@
-<div
-  class="add-button-div"
-  (mousedown)="mousedown($event)"
-  (mousemove)="mousemove($event)"
-  (mouseup)="mouseup($event)"
->
+<div class="add-button-div">
   <button
     mat-fab
     color="designer-accent"
     [matMenuTriggerFor]="menu"
-    aria-label="Example bntn wiuth menu"
+    aria-label="Neues Element hinzufügen"
   >
     <mat-icon>add</mat-icon>
   </button>
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item>
-      <mat-icon>dialpad</mat-icon>
-      <span>Redial</span>
-    </button>
-    <button mat-menu-item disabled>
-      <mat-icon>voicemail</mat-icon>
-      <span>Check Voicemail</span>
-    </button>
-    <button mat-menu-item [matMenuTriggerFor]="secondMenu">
-      Hat nach Inhalt
-    </button>
-  </mat-menu>
 
-  <mat-menu #secondMenu="matMenu">
-    <button mat-menu-item>inhalt 1</button>
-    <button mat-menu-item>inhalt 2</button>
+  <mat-menu #menu="matMenu">
+    <div *ngFor="let element of robotFunctionalities | keyvalue">
+      <button
+        mat-menu-item
+        *ngIf="element.value.length == 1"
+        (click)="addElement(element.value[0].identifier)"
+      >
+        <mat-icon>{{ getIconFor(element.key) }}</mat-icon>
+        <span>{{ element.value[0].displayName }}</span>
+      </button>
+      <div *ngIf="element.value.length > 1">
+        <button mat-menu-item [matMenuTriggerFor]="secondMenu">
+          <mat-icon>{{ getIconFor(element.key) }}</mat-icon>
+          <span>{{ element.key }}</span>
+        </button>
+        <mat-menu #secondMenu="matMenu">
+          <button
+            mat-menu-item
+            *ngFor="let e of element.value"
+            (click)="addElement(e.identifier)"
+          >
+            {{ e.displayName }}
+          </button>
+        </mat-menu>
+      </div>
+    </div>
   </mat-menu>
 </div>

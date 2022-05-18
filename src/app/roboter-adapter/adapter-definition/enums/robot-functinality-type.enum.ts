@@ -1,7 +1,8 @@
 export enum RobotFunctionalityType {
   whileLoop = 'Schleifen',
-  ifThenElse = 'Verzweigungen',
   trigger = 'Reaktionen',
+  ifThenElse = 'Verzweigungen',
   doSomething = 'Aktionen',
   getSomething = 'Sensoren',
+  logic = 'Logik',
 }

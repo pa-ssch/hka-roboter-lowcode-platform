@@ -1,16 +1,12 @@
 <div id="designer-div">
-  <ng-template #container> </ng-template>
+  <div>
+    <div class="workflow-div" *ngFor="let workflow of workflows"></div>
+    <div class="workflow-div">
+      <app-add-element-button
+        id="new-workflow-button"
+        [allowedElements]="newWorkflowAllowedElements"
+        (addElementRequest)="addNewWorkflow($event)"
+      ></app-add-element-button>
+    </div>
+  </div>
 </div>
-
-<!-- eventuell so machen:
-ich habe eine liste an der komponente;
-in dieser Liste sind diverse startobjekte (also immer nur schleife oder trigger)
-daran können je weitere elemente hängen
-mit ngfor wird das dann aufgebaut
-
-
-
-todo:
-
-dropdown zeigt (gruppiert!) die Optionen an; architektur anschauen!
--->

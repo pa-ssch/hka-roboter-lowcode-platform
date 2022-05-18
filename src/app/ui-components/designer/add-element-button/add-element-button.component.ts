@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
+import { AdapterRegistration } from 'src/app/app.adapter-registration';
+import { CookieManager } from 'src/app/app.cookiemanager';
+import { RobotFunctionalityType } from 'src/app/roboter-adapter/adapter-definition/enums/robot-functinality-type.enum';
+import { IRobotFunctionality } from 'src/app/roboter-adapter/adapter-definition/interfaces/robot-functionality.interface';
 
 @Component({
   selector: 'app-add-element-button',
@@ -6,58 +11,61 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-element-button.component.sass'],
   host: {
     '[id]': 'id',
-    '[style.position]': 'position',
-    '[style.left]': 'left',
-    '[style.top]': 'top',
   },
 })
-export class AddElementButtonComponent {
-  id: string;
-  position: string;
-  left: string;
-  top: string;
+export class AddElementButtonComponent implements OnInit {
+  @Output() addElementRequest = new EventEmitter<string>();
 
-  private mousePosition: any;
-  private dragOffset: any;
-  private isDown: boolean;
-  private btn: any;
+  @Input()
+  allowedElements: RobotFunctionalityType[];
 
-  constructor() {
-    this.mousePosition = {
-      x: 0,
-      y: 0,
-    };
-    this.isDown = false;
-    this.dragOffset = [0, 0];
+  public id: string;
+
+  public robotFunctionalities: Map<
+    RobotFunctionalityType,
+    [IRobotFunctionality]
+  > = new Map();
+
+  constructor(private _cookieService: CookieService) {}
+
+  public ngOnInit() {
+    let robotAdapter = AdapterRegistration.getAdapterByIdentifier(
+      this._cookieService.get(CookieManager.RobotTypeCookieName)
+    );
+
+    robotAdapter.functionality.forEach((item) => {
+      const key = item.type;
+      if (this.allowedElements.indexOf(key) > -1) {
+        const collection = this.robotFunctionalities.get(key);
+        if (!collection) {
+          this.robotFunctionalities.set(key, [item]);
+        } else {
+          collection.push(item);
+        }
+      }
+    });
   }
-  ngOnInit() {
-    this.btn = document.getElementsByClassName('add-button-div')[0];
+
+  addElement(identifier: string) {
+    this.addElementRequest.emit(identifier);
   }
 
-  mousedown($event: any) {
-    this.isDown = true;
-
-    $event.preventDefault();
-    this.dragOffset = [
-      this.btn.offsetLeft - $event.clientX,
-      this.btn.offsetTop - $event.clientY,
-    ];
-  }
-  mousemove($event: any) {
-    $event.preventDefault();
-
-    if (this.isDown) {
-      var mousePosition = {
-        x: $event.clientX,
-        y: $event.clientY,
-      };
-
-      this.btn.style.left = mousePosition.x + this.dragOffset[0] + 'px';
-      this.btn.style.top = mousePosition.y + this.dragOffset[1] + 'px';
+  getIconFor(type: RobotFunctionalityType): string {
+    switch (type) {
+      case RobotFunctionalityType.whileLoop:
+        return 'restart_alt';
+      case RobotFunctionalityType.trigger:
+        return 'arrow_downward';
+      case RobotFunctionalityType.doSomething:
+        return 'smart_toy';
+      case RobotFunctionalityType.getSomething:
+        return 'sensors';
+      case RobotFunctionalityType.ifThenElse:
+        return 'account_tree';
+      case RobotFunctionalityType.logic:
+        return 'functions';
+      default:
+        return 'sentiment_very_dissatisfied';
     }
-  }
-  mouseup($event: any) {
-    this.isDown = false;
-    $event.preventDefault();
   }
 }
