@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { IRobotFunctionality } from 'src/app/roboter-adapter/adapter-definition/interfaces/robot-functionality.interface';
 
 @Component({
@@ -6,11 +6,7 @@ import { IRobotFunctionality } from 'src/app/roboter-adapter/adapter-definition/
   templateUrl: './workflow-element-logic.component.html',
   styleUrls: ['./workflow-element-logic.component.sass'],
 })
-export class WorkflowElementLogicComponent implements OnInit {
+export class WorkflowElementLogicComponent {
   @Input()
   functionality: IRobotFunctionality;
-
-  constructor() {}
-
-  ngOnInit(): void {}
 }

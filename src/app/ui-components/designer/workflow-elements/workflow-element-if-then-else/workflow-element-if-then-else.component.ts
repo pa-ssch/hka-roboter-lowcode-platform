@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { IRobotFunctionality } from 'src/app/roboter-adapter/adapter-definition/interfaces/robot-functionality.interface';
 
 @Component({
@@ -6,11 +6,7 @@ import { IRobotFunctionality } from 'src/app/roboter-adapter/adapter-definition/
   templateUrl: './workflow-element-if-then-else.component.html',
   styleUrls: ['./workflow-element-if-then-else.component.sass'],
 })
-export class WorkflowElementIfThenElseComponent implements OnInit {
+export class WorkflowElementIfThenElseComponent {
   @Input()
   functionality: IRobotFunctionality;
-
-  constructor() {}
-
-  ngOnInit(): void {}
 }
