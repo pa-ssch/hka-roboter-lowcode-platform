@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { RobotFunctionalityType } from 'src/app/roboter-adapter/adapter-definition/enums/robot-functinality-type.enum';
 import { IRobotFunctionality } from 'src/app/roboter-adapter/adapter-definition/interfaces/robot-functionality.interface';
 
 @Component({
@@ -6,11 +7,15 @@ import { IRobotFunctionality } from 'src/app/roboter-adapter/adapter-definition/
   templateUrl: './workflow-element-trigger.component.html',
   styleUrls: ['./workflow-element-trigger.component.sass'],
 })
-export class WorkflowElementTriggerComponent implements OnInit {
+export class WorkflowElementTriggerComponent {
   @Input()
   functionality: IRobotFunctionality;
 
-  constructor() {}
+  @Output() addElementRequest = new EventEmitter<IRobotFunctionality>();
 
-  ngOnInit(): void {}
+  elementType: typeof RobotFunctionalityType = RobotFunctionalityType;
+
+  addFollowingElement(robotFunctionality: IRobotFunctionality) {
+    this.addElementRequest.emit(robotFunctionality);
+  }
 }

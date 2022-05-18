@@ -16,4 +16,12 @@ export class DesignerComponent {
     console.log(robotFunctionality.identifier);
     this.workflows.push([robotFunctionality]);
   }
+
+  addElement(
+    robotFunctionality: IRobotFunctionality,
+    workflow: IRobotFunctionality[],
+    indexOfElement: number
+  ) {
+    workflow.splice(indexOfElement + 1, 0, robotFunctionality);
+  }
 }

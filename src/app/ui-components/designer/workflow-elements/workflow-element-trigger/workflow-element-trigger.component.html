@@ -1,1 +1,13 @@
-<p>workflow-element-trigger works!</p>
+<div class="trigger-element-div">
+  {{ functionality.parameterizedDisplayName }}
+</div>
+
+<app-add-element-button
+  id="new-workflow-button"
+  [allowedElements]="[
+    elementType.whileLoop,
+    elementType.ifThenElse,
+    elementType.doSomething
+  ]"
+  (addElementRequest)="addFollowingElement($event)"
+></app-add-element-button>
