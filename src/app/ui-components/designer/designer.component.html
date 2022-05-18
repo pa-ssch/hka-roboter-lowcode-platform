@@ -21,6 +21,7 @@
       <app-workflow-element-do-something
         *ngSwitchCase="elementType.doSomething"
         [functionality]="element"
+        (addElementRequest)="addElement($event, workflow, indexOfelement)"
       ></app-workflow-element-do-something>
       <app-workflow-element-get-something
         *ngSwitchCase="elementType.getSomething"

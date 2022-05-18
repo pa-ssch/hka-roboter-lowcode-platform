@@ -1,1 +1,52 @@
-<p>workflow-element-do-something works!</p>
+<div class="do-something-element-div">
+  <div
+    class="do-something-element-description-div"
+    *ngFor="let phrase of displayPhrases"
+  >
+    <span *ngIf="!isNumber(phrase)">{{ phrase }}</span>
+
+    <div *ngIf="isNumber(phrase)" [ngSwitch]="getArgumentAt(phrase).dataType">
+      <span *ngSwitchDefault>[PARAMETERTYPE NOT IMPLEMENTED]</span>
+      <!--TODO: not a formfield; make a add-button for a logic-element -->
+      <mat-form-field
+        *ngSwitchCase="robotDataType.number"
+        class="workflow-element-parameter-form-field"
+      >
+        <input matInput type="number" class="align-text-center" />
+      </mat-form-field>
+
+      <mat-form-field
+        *ngSwitchCase="robotDataType.boolean"
+        class="workflow-element-parameter-form-field"
+      >
+        <mat-select class="align-text-center">
+          <mat-option [value]="true">ein</mat-option>
+          <mat-option [value]="false">aus</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field
+        *ngSwitchCase="robotDataType.custom"
+        class="workflow-element-parameter-form-field"
+      >
+        <mat-select class="align-text-center">
+          <mat-option
+            *ngFor="let optionValue of getArgumentAt(phrase).customValues"
+            [value]="optionValue"
+            >{{ optionValue }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+</div>
+
+<app-add-element-button
+  id="new-workflow-button"
+  [allowedElements]="[
+    elementType.whileLoop,
+    elementType.ifThenElse,
+    elementType.doSomething
+  ]"
+  (addElementRequest)="addFollowingElement($event)"
+></app-add-element-button>

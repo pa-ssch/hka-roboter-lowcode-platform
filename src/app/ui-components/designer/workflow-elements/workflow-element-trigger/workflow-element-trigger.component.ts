@@ -17,5 +17,7 @@ export class WorkflowElementTriggerComponent {
 
   addFollowingElement(robotFunctionality: IRobotFunctionality) {
     this.addElementRequest.emit(robotFunctionality);
+    //TODO: this schould hold the elements by itself, because, when you delete the trigger,
+    // the following element should be deleted too
   }
 }
