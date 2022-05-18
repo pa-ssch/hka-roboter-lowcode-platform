@@ -10,12 +10,10 @@ import { IRobotFunctionality } from 'src/app/roboter-adapter/adapter-definition/
 export class DesignerComponent {
   public workflows: IRobotFunctionality[][] = [];
 
-  newWorkflowAllowedElements = [
-    RobotFunctionalityType.whileLoop,
-    RobotFunctionalityType.trigger,
-  ];
-  addNewWorkflow(identifier: string) {
-    console.log(identifier);
-    this.workflows.push(null);
+  elementType: typeof RobotFunctionalityType = RobotFunctionalityType;
+
+  addNewWorkflow(robotFunctionality: IRobotFunctionality) {
+    console.log(robotFunctionality.identifier);
+    this.workflows.push([robotFunctionality]);
   }
 }

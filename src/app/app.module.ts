@@ -20,6 +20,12 @@ import { MatMenuModule } from '@angular/material/menu';
 import { CookieService } from 'ngx-cookie-service';
 import { AddElementButtonComponent } from './ui-components/designer/add-element-button/add-element-button.component';
 import { MatIconModule } from '@angular/material/icon';
+import { WorkflowElementWhileLoopComponent } from './ui-components/designer/workflow-elements/workflow-element-while-loop/workflow-element-while-loop.component';
+import { WorkflowElementTriggerComponent } from './ui-components/designer/workflow-elements/workflow-element-trigger/workflow-element-trigger.component';
+import { WorkflowElementIfThenElseComponent } from './ui-components/designer/workflow-elements/workflow-element-if-then-else/workflow-element-if-then-else.component';
+import { WorkflowElementDoSomethingComponent } from './ui-components/designer/workflow-elements/workflow-element-do-something/workflow-element-do-something.component';
+import { WorkflowElementGetSomethingComponent } from './ui-components/designer/workflow-elements/workflow-element-get-something/workflow-element-get-something.component';
+import { WorkflowElementLogicComponent } from './ui-components/designer/workflow-elements/workflow-element-logic/workflow-element-logic.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +36,12 @@ import { MatIconModule } from '@angular/material/icon';
     StartupDialogComponent,
     LoginDialogComponent,
     AddElementButtonComponent,
+    WorkflowElementWhileLoopComponent,
+    WorkflowElementTriggerComponent,
+    WorkflowElementIfThenElseComponent,
+    WorkflowElementDoSomethingComponent,
+    WorkflowElementGetSomethingComponent,
+    WorkflowElementLogicComponent,
   ],
   imports: [
     BrowserModule,

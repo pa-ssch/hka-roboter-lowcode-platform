@@ -13,7 +13,7 @@
       <button
         mat-menu-item
         *ngIf="element.value.length == 1"
-        (click)="addElement(element.value[0].identifier)"
+        (click)="addElement(element.value[0])"
       >
         <mat-icon>{{ getIconFor(element.key) }}</mat-icon>
         <span>{{ element.value[0].displayName }}</span>
@@ -27,7 +27,7 @@
           <button
             mat-menu-item
             *ngFor="let e of element.value"
-            (click)="addElement(e.identifier)"
+            (click)="addElement(e)"
           >
             {{ e.displayName }}
           </button>

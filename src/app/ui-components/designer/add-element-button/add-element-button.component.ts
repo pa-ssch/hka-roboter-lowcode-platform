@@ -14,7 +14,7 @@ import { IRobotFunctionality } from 'src/app/roboter-adapter/adapter-definition/
   },
 })
 export class AddElementButtonComponent implements OnInit {
-  @Output() addElementRequest = new EventEmitter<string>();
+  @Output() addElementRequest = new EventEmitter<IRobotFunctionality>();
 
   @Input()
   allowedElements: RobotFunctionalityType[];
@@ -46,8 +46,8 @@ export class AddElementButtonComponent implements OnInit {
     });
   }
 
-  addElement(identifier: string) {
-    this.addElementRequest.emit(identifier);
+  addElement(robotFunctionality: IRobotFunctionality) {
+    this.addElementRequest.emit(robotFunctionality);
   }
 
   getIconFor(type: RobotFunctionalityType): string {
