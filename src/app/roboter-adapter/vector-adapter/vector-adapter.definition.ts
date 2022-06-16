@@ -2,7 +2,7 @@ import { ParameterDefinition } from '../adapter-definition/default-implementatio
 import { AdapterParameterType } from '../adapter-definition/enums/adapter-parameter-type.enum';
 import { IParameterDefinition } from '../adapter-definition/interfaces/parameter-definition.interface';
 import { IRobotAdapter } from '../adapter-definition/interfaces/robot-adapter.interface';
-import { IRobotFunctionality } from '../adapter-definition/interfaces/robot-functionality.interface';
+import { IRobotFunctionality } from '../adapter-definition/interfaces/robot-functionality/robot-functionality.interface';
 
 export class VectorAdapterDefinition implements IRobotAdapter {
   identifier: string = 'vector-robot';
@@ -24,5 +24,10 @@ export class VectorAdapterDefinition implements IRobotAdapter {
     } else {
       return 'Der Roboter ist nicht erreichbar';
     }
+  }
+
+  setNewWorkflows(workflows: IRobotFunctionality[][]): void {
+    throw new Error('Method not implemented.');
+    // TODO: ...
   }
 }

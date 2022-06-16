@@ -2,7 +2,11 @@
   {{ functionality.parameterizedDisplayName }}
 </div>
 
-<app-add-element-button
+<app-workflow-container
+  [workflows]="getFollowingElements()"
+></app-workflow-container>
+
+<add-element-button
   id="new-workflow-button"
   [allowedElements]="[
     elementType.whileLoop,
@@ -10,4 +14,4 @@
     elementType.doSomething
   ]"
   (addElementRequest)="addFollowingElement($event)"
-></app-add-element-button>
+></add-element-button>

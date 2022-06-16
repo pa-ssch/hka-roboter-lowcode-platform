@@ -3,10 +3,10 @@ import { CookieService } from 'ngx-cookie-service';
 import { AdapterRegistration } from 'src/app/app.adapter-registration';
 import { CookieManager } from 'src/app/app.cookiemanager';
 import { RobotFunctionalityType } from 'src/app/roboter-adapter/adapter-definition/enums/robot-functinality-type.enum';
-import { IRobotFunctionality } from 'src/app/roboter-adapter/adapter-definition/interfaces/robot-functionality.interface';
+import { IRobotFunctionality } from 'src/app/roboter-adapter/adapter-definition/interfaces/robot-functionality/robot-functionality.interface';
 
 @Component({
-  selector: 'app-add-element-button',
+  selector: 'add-element-button',
   templateUrl: './add-element-button.component.html',
   styleUrls: ['./add-element-button.component.sass'],
   host: {

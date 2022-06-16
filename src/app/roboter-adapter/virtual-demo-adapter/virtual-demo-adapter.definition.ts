@@ -1,16 +1,18 @@
 import { ParameterDefinition } from '../adapter-definition/default-implementations/parameter-definition.default';
 import { RobotFunctionalityArgument } from '../adapter-definition/default-implementations/robot-functionality-argument.default';
 import { RobotFunctinoality as RobotFunctionality } from '../adapter-definition/default-implementations/robot-functionality.default';
+import { DefaultTriggerFunctinoality as DefaultTriggerFunctionality } from '../adapter-definition/default-implementations/trigger-functionality.default';
 import { AdapterParameterType } from '../adapter-definition/enums/adapter-parameter-type.enum';
 import { RobotDataType } from '../adapter-definition/enums/robot-data-type.enum';
 import { RobotFunctionalityType } from '../adapter-definition/enums/robot-functinality-type.enum';
 import { IParameterDefinition } from '../adapter-definition/interfaces/parameter-definition.interface';
 import { IRobotAdapter } from '../adapter-definition/interfaces/robot-adapter.interface';
-import { IRobotFunctionality } from '../adapter-definition/interfaces/robot-functionality.interface';
+import { IRobotFunctionality } from '../adapter-definition/interfaces/robot-functionality/robot-functionality.interface';
 
 export class VirtualDemoAdapterDefinition implements IRobotAdapter {
   identifier: string = 'virtual-demo-robot';
   name: string = 'Virtueller Demo Roboter';
+  private currentWorkflows: IRobotFunctionality[][];
 
   parameter: IParameterDefinition[] = [
     new ParameterDefinition('Beispiel 1', AdapterParameterType.boolean),
@@ -26,9 +28,8 @@ export class VirtualDemoAdapterDefinition implements IRobotAdapter {
       RobotDataType.void,
       () => []
     ),
-    new RobotFunctionality(
+    new DefaultTriggerFunctionality(
       'on-startup',
-      RobotFunctionalityType.trigger,
       'Beim Start',
       'Beim Start',
       RobotDataType.void,
@@ -70,4 +71,8 @@ export class VirtualDemoAdapterDefinition implements IRobotAdapter {
     ),
   ];
   validateParameter = (_: AdapterParameterType[]): string => '';
+
+  setNewWorkflows(workflows: IRobotFunctionality[][]): void {
+    this.currentWorkflows = workflows;
+  }
 }

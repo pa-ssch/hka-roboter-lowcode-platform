@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { AdapterRegistration } from './app.adapter-registration';
 import { CookieManager } from './app.cookiemanager';

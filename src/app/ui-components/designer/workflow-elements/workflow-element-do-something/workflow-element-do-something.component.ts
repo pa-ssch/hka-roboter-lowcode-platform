@@ -2,8 +2,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { RobotFunctionalityArgument } from 'src/app/roboter-adapter/adapter-definition/default-implementations/robot-functionality-argument.default';
 import { RobotDataType } from 'src/app/roboter-adapter/adapter-definition/enums/robot-data-type.enum';
 import { RobotFunctionalityType } from 'src/app/roboter-adapter/adapter-definition/enums/robot-functinality-type.enum';
-import { IRobotFunctinoalityArgument } from 'src/app/roboter-adapter/adapter-definition/interfaces/robot-functionality-argument.interface';
-import { IRobotFunctionality } from 'src/app/roboter-adapter/adapter-definition/interfaces/robot-functionality.interface';
+import { IRobotFunctinoalityArgument } from 'src/app/roboter-adapter/adapter-definition/interfaces/robot-functionality/robot-functionality-argument.interface';
+import { IRobotFunctionality } from 'src/app/roboter-adapter/adapter-definition/interfaces/robot-functionality/robot-functionality.interface';
 
 @Component({
   selector: 'app-workflow-element-do-something',
@@ -13,6 +13,7 @@ import { IRobotFunctionality } from 'src/app/roboter-adapter/adapter-definition/
 export class WorkflowElementDoSomethingComponent implements OnInit {
   @Input() functionality: IRobotFunctionality;
   @Output() addElementRequest = new EventEmitter<IRobotFunctionality>();
+  @Output() deleteElementRequest = new EventEmitter();
 
   elementType: typeof RobotFunctionalityType = RobotFunctionalityType;
   robotDataType: typeof RobotDataType = RobotDataType;
@@ -40,7 +41,7 @@ export class WorkflowElementDoSomethingComponent implements OnInit {
     this.displayPhrases.push(parameterizedDisplayName.substring(previousIndex));
   }
 
-  addFollowingElement(robotFunctionality: IRobotFunctionality) {
+  addPrecedingElement(robotFunctionality: IRobotFunctionality) {
     this.addElementRequest.emit(robotFunctionality);
   }
 
@@ -52,5 +53,9 @@ export class WorkflowElementDoSomethingComponent implements OnInit {
     if (this.isNumber(value) && this.arguments.length > value && value >= 0)
       return this.arguments[value] as RobotFunctionalityArgument;
     else return null;
+  }
+
+  delete() {
+    this.deleteElementRequest.emit();
   }
 }

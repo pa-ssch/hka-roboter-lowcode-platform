@@ -1,5 +1,5 @@
 import { RobotDataType } from '../enums/robot-data-type.enum';
-import { IRobotFunctinoalityArgument } from '../interfaces/robot-functionality-argument.interface';
+import { IRobotFunctinoalityArgument } from '../interfaces/robot-functionality/robot-functionality-argument.interface';
 
 export class RobotFunctionalityArgument implements IRobotFunctinoalityArgument {
   public value: any;

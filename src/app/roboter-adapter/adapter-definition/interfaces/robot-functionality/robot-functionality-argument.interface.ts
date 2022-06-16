@@ -1,4 +1,4 @@
-import { RobotDataType } from '../enums/robot-data-type.enum';
+import { RobotDataType } from '../../enums/robot-data-type.enum';
 
 export interface IRobotFunctinoalityArgument {
   readonly identifier: string;

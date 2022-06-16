@@ -1,5 +1,5 @@
-import { RobotDataType } from '../enums/robot-data-type.enum';
-import { RobotFunctionalityType } from '../enums/robot-functinality-type.enum';
+import { RobotDataType } from '../../enums/robot-data-type.enum';
+import { RobotFunctionalityType } from '../../enums/robot-functinality-type.enum';
 import { IRobotFunctinoalityArgument } from './robot-functionality-argument.interface';
 
 export interface IRobotFunctionality {

@@ -1,45 +1,12 @@
 <div id="designer-div">
-  <div class="workflow-div" *ngFor="let workflow of workflows">
-    <div
-      class="element-div"
-      *ngFor="let element of workflow; let indexOfelement = index"
-      [ngSwitch]="element.type"
-    >
-      <app-workflow-element-while-loop
-        *ngSwitchCase="elementType.whileLoop"
-        [functionality]="element"
-      ></app-workflow-element-while-loop>
-      <app-workflow-element-trigger
-        *ngSwitchCase="elementType.trigger"
-        [functionality]="element"
-        (addElementRequest)="addElement($event, workflow, indexOfelement)"
-      ></app-workflow-element-trigger>
-      <app-workflow-element-if-then-else
-        *ngSwitchCase="elementType.ifThenElse"
-        [functionality]="element"
-      ></app-workflow-element-if-then-else>
-      <app-workflow-element-do-something
-        *ngSwitchCase="elementType.doSomething"
-        [functionality]="element"
-        (addElementRequest)="addElement($event, workflow, indexOfelement)"
-      ></app-workflow-element-do-something>
-      <app-workflow-element-get-something
-        *ngSwitchCase="elementType.getSomething"
-        [functionality]="element"
-      ></app-workflow-element-get-something>
-      <app-workflow-element-logic
-        *ngSwitchCase="elementType.logic"
-        [functionality]="element"
-      ></app-workflow-element-logic>
-    </div>
-  </div>
+  <app-workflow-container [workflows]="getWorkflows()"></app-workflow-container>
   <div class="workflow-div">
     <div class="element-div">
-      <app-add-element-button
+      <add-element-button
         id="new-workflow-button"
         [allowedElements]="[elementType.whileLoop, elementType.trigger]"
         (addElementRequest)="addNewWorkflow($event)"
-      ></app-add-element-button>
+      ></add-element-button>
     </div>
   </div>
 </div>

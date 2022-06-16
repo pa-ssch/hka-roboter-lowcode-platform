@@ -26,6 +26,7 @@ import { WorkflowElementIfThenElseComponent } from './ui-components/designer/wor
 import { WorkflowElementDoSomethingComponent } from './ui-components/designer/workflow-elements/workflow-element-do-something/workflow-element-do-something.component';
 import { WorkflowElementGetSomethingComponent } from './ui-components/designer/workflow-elements/workflow-element-get-something/workflow-element-get-something.component';
 import { WorkflowElementLogicComponent } from './ui-components/designer/workflow-elements/workflow-element-logic/workflow-element-logic.component';
+import { WorkflowContainerComponent } from './ui-components/designer/workflow-container/workflow-container.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { WorkflowElementLogicComponent } from './ui-components/designer/workflow
     WorkflowElementDoSomethingComponent,
     WorkflowElementGetSomethingComponent,
     WorkflowElementLogicComponent,
+    WorkflowContainerComponent,
   ],
   imports: [
     BrowserModule,

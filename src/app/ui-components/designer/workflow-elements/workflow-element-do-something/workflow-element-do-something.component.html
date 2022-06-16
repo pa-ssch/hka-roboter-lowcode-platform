@@ -1,4 +1,21 @@
+<add-element-button
+  id="add-workflow-element-button"
+  [allowedElements]="[
+    elementType.whileLoop,
+    elementType.ifThenElse,
+    elementType.doSomething
+  ]"
+  (addElementRequest)="addPrecedingElement($event)"
+></add-element-button>
 <div class="do-something-element-div">
+  <button
+    class="delete-button"
+    mat-icon-button
+    color="designer-accent"
+    (click)="delete()"
+  >
+    <mat-icon>delete</mat-icon>
+  </button>
   <div
     class="do-something-element-description-div"
     *ngFor="let phrase of displayPhrases"
@@ -7,7 +24,9 @@
 
     <div *ngIf="isNumber(phrase)" [ngSwitch]="getArgumentAt(phrase).dataType">
       <span *ngSwitchDefault>[PARAMETERTYPE NOT IMPLEMENTED]</span>
-      <!--TODO: not a formfield; make a add-button for a logic-element -->
+      <!--TODO: not a formfield; make a add-button for a logic-element ;-->
+      <!--TODO: save values in the parameterElements-->
+      <!-- TODO: the formfield overlaps the add button -->
       <mat-form-field
         *ngSwitchCase="robotDataType.number"
         class="workflow-element-parameter-form-field"
@@ -40,13 +59,3 @@
     </div>
   </div>
 </div>
-
-<app-add-element-button
-  id="new-workflow-button"
-  [allowedElements]="[
-    elementType.whileLoop,
-    elementType.ifThenElse,
-    elementType.doSomething
-  ]"
-  (addElementRequest)="addFollowingElement($event)"
-></app-add-element-button>

@@ -1,5 +1,5 @@
 <div id="toolbar-div">
-  <button mat-button>Vorschau</button>
+  <button mat-button (click)="openPreview()">Vorschau</button>
   <button mat-button>Starten</button>
   <button mat-button>Speichern</button>
   <button mat-button>Öffnen</button>
@@ -8,11 +8,11 @@
 </div>
 <div id="main-content">
   <div id="designer-div" class="main-component-div">
-    <app-designer></app-designer>
+    <app-designer id="designer-component"></app-designer>
   </div>
   <div id="debugger-div" class="main-component-div">
     <app-debugger></app-debugger>
   </div>
 </div>
 
-<!-- when leaving this page, a "unsaved changes" prompt must be shown -->
+<!-- TODO: when leaving this page, a "unsaved changes" prompt must be shown -->
