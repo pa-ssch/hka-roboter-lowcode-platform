@@ -30,4 +30,9 @@ export class VectorAdapterDefinition implements IRobotAdapter {
     throw new Error('Method not implemented.');
     // TODO: ...
   }
+
+  getAvailablePreviews(): any[] {
+    throw new Error('Method not implemented.');
+    // TODO: ...
+  }
 }

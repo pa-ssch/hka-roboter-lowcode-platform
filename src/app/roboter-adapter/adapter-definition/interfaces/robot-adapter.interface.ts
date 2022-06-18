@@ -9,4 +9,5 @@ export interface IRobotAdapter {
   readonly functionality: IRobotFunctionality[];
   validateParameter(parameterValues: AdapterParameterType[]): string;
   setNewWorkflows(workflows: IRobotFunctionality[][]): void;
+  getAvailablePreviews(): any[];
 }

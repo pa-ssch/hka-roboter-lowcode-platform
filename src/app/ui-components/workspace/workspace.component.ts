@@ -10,6 +10,8 @@ import { WorkflowManager } from 'src/app/app.workflowmanager';
   styleUrls: ['./workspace.component.sass'],
 })
 export class WorkspaceComponent {
+  availablePreviews: any[];
+
   constructor(private _cookieService: CookieService) {}
 
   logout() {
@@ -23,5 +25,7 @@ export class WorkspaceComponent {
     );
 
     adapter.setNewWorkflows(WorkflowManager.getWorkflows());
+
+    this.availablePreviews = adapter.getAvailablePreviews();
   }
 }
