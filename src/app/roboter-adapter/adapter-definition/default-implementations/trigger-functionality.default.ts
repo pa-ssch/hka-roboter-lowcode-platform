@@ -12,4 +12,14 @@ export class DefaultTriggerFunctinoality extends TriggerFunctionality {
   ) {
     super();
   }
+
+  copy(): DefaultTriggerFunctinoality {
+    return new DefaultTriggerFunctinoality(
+      this.identifier,
+      this.displayName,
+      this.parameterizedDisplayName,
+      this.resultType,
+      this.requiredArguments
+    );
+  }
 }

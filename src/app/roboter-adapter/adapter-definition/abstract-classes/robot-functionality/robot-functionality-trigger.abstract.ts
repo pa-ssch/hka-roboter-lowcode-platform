@@ -13,4 +13,6 @@ export abstract class TriggerFunctionality implements IRobotFunctionality {
   abstract resultType: RobotDataType;
 
   abstract requiredArguments(): IRobotFunctinoalityArgument[];
+
+  abstract copy(): IRobotFunctionality;
 }

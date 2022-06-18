@@ -22,6 +22,6 @@ export class WorkspaceComponent {
       this._cookieService.get(CookieManager.RobotTypeCookieName)
     );
 
-    adapter.setNewWorkflows(WorkflowManager.workflows);
+    adapter.setNewWorkflows(WorkflowManager.getWorkflows());
   }
 }

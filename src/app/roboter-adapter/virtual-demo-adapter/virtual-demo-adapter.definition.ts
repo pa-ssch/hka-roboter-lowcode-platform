@@ -74,5 +74,6 @@ export class VirtualDemoAdapterDefinition implements IRobotAdapter {
 
   setNewWorkflows(workflows: IRobotFunctionality[][]): void {
     this.currentWorkflows = workflows;
+    // TODO: continue work here
   }
 }

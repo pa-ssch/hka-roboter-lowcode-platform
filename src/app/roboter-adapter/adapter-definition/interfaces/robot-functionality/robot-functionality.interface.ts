@@ -9,4 +9,6 @@ export interface IRobotFunctionality {
   readonly parameterizedDisplayName: string;
   readonly resultType: RobotDataType;
   requiredArguments(): IRobotFunctinoalityArgument[];
+
+  copy(): IRobotFunctionality;
 }

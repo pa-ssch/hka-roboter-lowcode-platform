@@ -12,10 +12,10 @@ export class DesignerComponent {
   elementType: typeof RobotFunctionalityType = RobotFunctionalityType;
 
   addNewWorkflow(robotFunctionality: IRobotFunctionality) {
-    WorkflowManager.workflows.push([robotFunctionality]);
+    WorkflowManager.push([robotFunctionality]);
   }
 
   getWorkflows() {
-    return WorkflowManager.workflows;
+    return WorkflowManager.getWorkflows();
   }
 }

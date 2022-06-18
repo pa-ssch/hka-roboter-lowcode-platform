@@ -12,4 +12,15 @@ export class RobotFunctinoality implements IRobotFunctionality {
     public readonly resultType: RobotDataType,
     public requiredArguments: () => IRobotFunctinoalityArgument[]
   ) {}
+
+  copy(): IRobotFunctionality {
+    return new RobotFunctinoality(
+      this.identifier,
+      this.type,
+      this.displayName,
+      this.parameterizedDisplayName,
+      this.resultType,
+      this.requiredArguments
+    );
+  }
 }
