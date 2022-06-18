@@ -25,8 +25,8 @@
     <div *ngIf="isNumber(phrase)" [ngSwitch]="getArgumentAt(phrase).dataType">
       <span *ngSwitchDefault>[PARAMETERTYPE NOT IMPLEMENTED]</span>
       <!--TODO: not a formfield; make a add-button for a logic-element ;-->
+      <!-- the formfield overlaps the add button -->
       <!--TODO: save values in the parameterElements-->
-      <!-- TODO: the formfield overlaps the add button -->
       <mat-form-field
         *ngSwitchCase="robotDataType.number"
         class="workflow-element-parameter-form-field"
