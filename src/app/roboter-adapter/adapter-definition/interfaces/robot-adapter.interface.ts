@@ -1,5 +1,6 @@
 import { AdapterParameterType } from '../enums/adapter-parameter-type.enum';
 import { IParameterDefinition } from './parameter-definition.interface';
+import { IPreviewGroup } from './preview/preview-group.interface';
 import { IRobotFunctionality } from './robot-functionality/robot-functionality.interface';
 
 export interface IRobotAdapter {
@@ -9,5 +10,5 @@ export interface IRobotAdapter {
   readonly functionality: IRobotFunctionality[];
   validateParameter(parameterValues: AdapterParameterType[]): string;
   setNewWorkflows(workflows: IRobotFunctionality[][]): void;
-  getAvailablePreviews(): any[];
+  getAvailablePreviews(): IPreviewGroup[];
 }

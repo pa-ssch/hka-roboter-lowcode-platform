@@ -3,6 +3,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { AdapterRegistration } from 'src/app/app.adapter-registration';
 import { CookieManager } from 'src/app/app.cookiemanager';
 import { WorkflowManager } from 'src/app/app.workflowmanager';
+import { IPreviewGroup } from 'src/app/roboter-adapter/adapter-definition/interfaces/preview/preview-group.interface';
 
 @Component({
   selector: 'app-workspace',
@@ -10,7 +11,7 @@ import { WorkflowManager } from 'src/app/app.workflowmanager';
   styleUrls: ['./workspace.component.sass'],
 })
 export class WorkspaceComponent {
-  availablePreviews: any[];
+  availablePreviews: IPreviewGroup[];
 
   constructor(private _cookieService: CookieService) {}
 

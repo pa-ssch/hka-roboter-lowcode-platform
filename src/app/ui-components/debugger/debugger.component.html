@@ -6,9 +6,9 @@
       [label]="previewGroup.name"
       [ngSwitch]="previewGroup.type"
     >
-      <div *ngSwitchCase="'textual'"></div>
-      <div *ngSwitchCase="'visual'"></div>
-      <div *ngSwitchCase="'custom'"></div>
+      <div *ngSwitchCase="previewGroupType.textual"></div>
+      <div *ngSwitchCase="previewGroupType.visual"></div>
+      <div *ngSwitchCase="previewGroupType.custom"></div>
     </mat-tab>
   </mat-tab-group>
 </div>
