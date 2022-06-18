@@ -27,6 +27,8 @@ import { WorkflowElementDoSomethingComponent } from './ui-components/designer/wo
 import { WorkflowElementGetSomethingComponent } from './ui-components/designer/workflow-elements/workflow-element-get-something/workflow-element-get-something.component';
 import { WorkflowElementLogicComponent } from './ui-components/designer/workflow-elements/workflow-element-logic/workflow-element-logic.component';
 import { WorkflowContainerComponent } from './ui-components/designer/workflow-container/workflow-container.component';
+import { TextualWorkflowPreviewComponent } from './ui-components/debugger/textual-workflow-preview/textual-workflow-preview.component';
+import { VisualWorkflowPreviewComponent } from './ui-components/debugger/visual-workflow-preview/visual-workflow-preview.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { WorkflowContainerComponent } from './ui-components/designer/workflow-co
     WorkflowElementGetSomethingComponent,
     WorkflowElementLogicComponent,
     WorkflowContainerComponent,
+    TextualWorkflowPreviewComponent,
+    VisualWorkflowPreviewComponent,
   ],
   imports: [
     BrowserModule,
