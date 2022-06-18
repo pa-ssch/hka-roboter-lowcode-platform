@@ -7,9 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class DebuggerComponent implements OnInit {
   @Input()
-  previewData: any[];
-
-  constructor() {}
+  previewGroups: any[];
 
   ngOnInit(): void {}
 }
