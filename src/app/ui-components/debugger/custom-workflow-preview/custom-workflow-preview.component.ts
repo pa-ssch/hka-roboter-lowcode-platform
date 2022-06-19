@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { IPreviewGroup } from 'src/app/roboter-adapter/adapter-definition/interfaces/preview/preview-group.interface';
 
 @Component({
   selector: 'app-custom-workflow-preview',
@@ -7,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CustomWorkflowPreviewComponent implements OnInit {
   @Input()
-  previewData: any;
+  previewData: IPreviewGroup;
 
   constructor() {}
 
