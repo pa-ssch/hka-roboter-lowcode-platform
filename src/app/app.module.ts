@@ -29,6 +29,7 @@ import { WorkflowElementLogicComponent } from './ui-components/designer/workflow
 import { WorkflowContainerComponent } from './ui-components/designer/workflow-container/workflow-container.component';
 import { TextualWorkflowPreviewComponent } from './ui-components/debugger/textual-workflow-preview/textual-workflow-preview.component';
 import { VisualWorkflowPreviewComponent } from './ui-components/debugger/visual-workflow-preview/visual-workflow-preview.component';
+import { CustomWorkflowPreviewComponent } from './ui-components/debugger/custom-workflow-preview/custom-workflow-preview.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { VisualWorkflowPreviewComponent } from './ui-components/debugger/visual-
     WorkflowContainerComponent,
     TextualWorkflowPreviewComponent,
     VisualWorkflowPreviewComponent,
+    CustomWorkflowPreviewComponent,
   ],
   imports: [
     BrowserModule,

@@ -14,7 +14,10 @@
         *ngSwitchCase="previewGroupType.visual"
         [previewData]="previewGroup.previewData"
       ></app-visual-workflow-preview>
-      <div *ngSwitchCase="previewGroupType.custom"></div>
+      <app-custom-workflow-preview
+        *ngSwitchCase="previewGroupType.custom"
+        [previewData]="previewGroup.previewData"
+      ></app-custom-workflow-preview>
     </mat-tab>
   </mat-tab-group>
 </div>
