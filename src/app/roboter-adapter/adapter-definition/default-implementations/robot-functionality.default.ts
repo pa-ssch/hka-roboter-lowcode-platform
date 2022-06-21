@@ -3,7 +3,7 @@ import { RobotFunctionalityType } from '../enums/robot-functinality-type.enum';
 import { IRobotFunctinoalityArgument } from '../interfaces/robot-functionality/robot-functionality-argument.interface';
 import { IRobotFunctionality } from '../interfaces/robot-functionality/robot-functionality.interface';
 
-export class RobotFunctinoality implements IRobotFunctionality {
+export class RobotFunctionality implements IRobotFunctionality {
   constructor(
     public readonly identifier: string,
     public readonly type: RobotFunctionalityType,
@@ -14,7 +14,7 @@ export class RobotFunctinoality implements IRobotFunctionality {
   ) {}
 
   copy(): IRobotFunctionality {
-    return new RobotFunctinoality(
+    return new RobotFunctionality(
       this.identifier,
       this.type,
       this.displayName,
@@ -22,5 +22,9 @@ export class RobotFunctinoality implements IRobotFunctionality {
       this.resultType,
       this.requiredArguments
     );
+  }
+
+  getFunctionalityList(): IRobotFunctionality[] {
+    return [this];
   }
 }

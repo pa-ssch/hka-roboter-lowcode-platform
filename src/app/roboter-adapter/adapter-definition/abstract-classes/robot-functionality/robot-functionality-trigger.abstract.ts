@@ -15,4 +15,8 @@ export abstract class TriggerFunctionality implements IRobotFunctionality {
   abstract requiredArguments(): IRobotFunctinoalityArgument[];
 
   abstract copy(): IRobotFunctionality;
+
+  getFunctionalityList(): IRobotFunctionality[] {
+    return [this as IRobotFunctionality].concat(this.followingElements);
+  }
 }

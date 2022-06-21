@@ -1,13 +1,17 @@
 import { ParameterDefinition } from '../adapter-definition/default-implementations/parameter-definition.default';
 import { RobotFunctionalityArgument } from '../adapter-definition/default-implementations/robot-functionality-argument.default';
-import { RobotFunctinoality as RobotFunctionality } from '../adapter-definition/default-implementations/robot-functionality.default';
+import { RobotFunctionality as RobotFunctionality } from '../adapter-definition/default-implementations/robot-functionality.default';
 import { DefaultTriggerFunctinoality as DefaultTriggerFunctionality } from '../adapter-definition/default-implementations/trigger-functionality.default';
 import { AdapterParameterType } from '../adapter-definition/enums/adapter-parameter-type.enum';
+import { PreviewGroupType } from '../adapter-definition/enums/preview-group-type.enum';
 import { RobotDataType } from '../adapter-definition/enums/robot-data-type.enum';
 import { RobotFunctionalityType } from '../adapter-definition/enums/robot-functinality-type.enum';
 import { IParameterDefinition } from '../adapter-definition/interfaces/parameter-definition.interface';
+import { IPreviewGroup } from '../adapter-definition/interfaces/preview/preview-group.interface';
 import { IRobotAdapter } from '../adapter-definition/interfaces/robot-adapter.interface';
 import { IRobotFunctionality } from '../adapter-definition/interfaces/robot-functionality/robot-functionality.interface';
+import { TextPreviewGroup } from './TextPreviewGroup';
+import { VisualPreviewGroup } from './VisualPreviewGroup';
 
 export class VirtualDemoAdapterDefinition implements IRobotAdapter {
   identifier: string = 'virtual-demo-robot';
@@ -76,8 +80,15 @@ export class VirtualDemoAdapterDefinition implements IRobotAdapter {
     this.currentWorkflows = workflows;
   }
 
-  getAvailablePreviews(): any[] {
-    return [];
+  getAvailablePreviews(): IPreviewGroup[] {
     // TODO: preparation of textual and graphical previews
+    let previews: IPreviewGroup[] = [];
+
+    this.currentWorkflows.forEach((workflow, index) => {
+      previews.push(new TextPreviewGroup(workflow, index + 1));
+      previews.push(new VisualPreviewGroup(workflow, index + 1));
+    });
+
+    return previews;
   }
 }

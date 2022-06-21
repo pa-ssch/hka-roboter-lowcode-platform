@@ -10,5 +10,8 @@ export interface IRobotFunctionality {
   readonly resultType: RobotDataType;
   requiredArguments(): IRobotFunctinoalityArgument[];
 
+  /** returns a list containing the affected functionality and the underlying functionalities (if any) */
+  getFunctionalityList(): IRobotFunctionality[];
+
   copy(): IRobotFunctionality;
 }
