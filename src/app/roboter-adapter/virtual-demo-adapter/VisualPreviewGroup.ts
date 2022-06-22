@@ -11,5 +11,7 @@ export class VisualPreviewGroup implements IPreviewGroup {
     this.name = `Visualisierung Workflow ${workflowNumber}`;
     this.type = PreviewGroupType.visual;
     // TODO: define a list of which images are displayed in which order.
+
+    //
   }
 }
