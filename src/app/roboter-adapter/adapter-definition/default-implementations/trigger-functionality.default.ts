@@ -2,7 +2,9 @@ import { TriggerFunctionality } from '../abstract-classes/robot-functionality/ro
 import { RobotDataType } from '../enums/robot-data-type.enum';
 import { IRobotFunctinoalityArgument } from '../interfaces/robot-functionality/robot-functionality-argument.interface';
 
-export class DefaultTriggerFunctinoality extends TriggerFunctionality {
+export class DefaultTriggerFunctionality extends TriggerFunctionality {
+  public readonly actualArgumentValues: IRobotFunctinoalityArgument[];
+
   constructor(
     public readonly identifier: string,
     public readonly displayName: string,
@@ -11,10 +13,11 @@ export class DefaultTriggerFunctinoality extends TriggerFunctionality {
     public requiredArguments: () => IRobotFunctinoalityArgument[]
   ) {
     super();
+    this.actualArgumentValues = requiredArguments();
   }
 
-  copy(): DefaultTriggerFunctinoality {
-    return new DefaultTriggerFunctinoality(
+  copy(): DefaultTriggerFunctionality {
+    return new DefaultTriggerFunctionality(
       this.identifier,
       this.displayName,
       this.parameterizedDisplayName,

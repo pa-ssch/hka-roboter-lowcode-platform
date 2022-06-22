@@ -1,7 +1,7 @@
 import { ParameterDefinition } from '../adapter-definition/default-implementations/parameter-definition.default';
 import { RobotFunctionalityArgument } from '../adapter-definition/default-implementations/robot-functionality-argument.default';
 import { RobotFunctionality as RobotFunctionality } from '../adapter-definition/default-implementations/robot-functionality.default';
-import { DefaultTriggerFunctinoality as DefaultTriggerFunctionality } from '../adapter-definition/default-implementations/trigger-functionality.default';
+import { DefaultTriggerFunctionality as DefaultTriggerFunctionality } from '../adapter-definition/default-implementations/trigger-functionality.default';
 import { AdapterParameterType } from '../adapter-definition/enums/adapter-parameter-type.enum';
 import { PreviewGroupType } from '../adapter-definition/enums/preview-group-type.enum';
 import { RobotDataType } from '../adapter-definition/enums/robot-data-type.enum';
@@ -64,7 +64,7 @@ export class VirtualDemoAdapterDefinition implements IRobotAdapter {
           'light-id',
           'Betroffene Lampe',
           RobotDataType.custom,
-          ['Lampe 1', 'Lampe 2']
+          [new DemoBotLeftLamp(), new DemoBotRightLamp()]
         ),
         new RobotFunctionalityArgument(
           'new-light-state',
@@ -90,5 +90,36 @@ export class VirtualDemoAdapterDefinition implements IRobotAdapter {
     });
 
     return previews;
+  }
+}
+
+export abstract class DemoBotLamp {
+  abstract toString(): string;
+  abstract updateRobotState(oldState: string): string;
+
+  isOn: boolean = false;
+
+  toggle(turnOn: boolean) {
+    this.isOn = turnOn;
+  }
+}
+
+class DemoBotLeftLamp extends DemoBotLamp {
+  updateRobotState(oldState: string): string {
+    return (this.isOn ? '1' : '0') + oldState.charAt(1);
+  }
+
+  toString(): string {
+    return 'Lampe 1';
+  }
+}
+
+class DemoBotRightLamp extends DemoBotLamp {
+  updateRobotState(oldState: string): string {
+    return oldState.charAt(0) + (this.isOn ? '1' : '0');
+  }
+
+  toString(): string {
+    return 'Lampe 2';
   }
 }

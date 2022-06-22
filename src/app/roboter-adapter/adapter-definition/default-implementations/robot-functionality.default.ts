@@ -4,6 +4,8 @@ import { IRobotFunctinoalityArgument } from '../interfaces/robot-functionality/r
 import { IRobotFunctionality } from '../interfaces/robot-functionality/robot-functionality.interface';
 
 export class RobotFunctionality implements IRobotFunctionality {
+  public readonly actualArgumentValues: IRobotFunctinoalityArgument[] = [];
+
   constructor(
     public readonly identifier: string,
     public readonly type: RobotFunctionalityType,
@@ -11,7 +13,9 @@ export class RobotFunctionality implements IRobotFunctionality {
     public readonly parameterizedDisplayName: string,
     public readonly resultType: RobotDataType,
     public requiredArguments: () => IRobotFunctinoalityArgument[]
-  ) {}
+  ) {
+    this.actualArgumentValues = requiredArguments();
+  }
 
   copy(): IRobotFunctionality {
     return new RobotFunctionality(
@@ -26,5 +30,10 @@ export class RobotFunctionality implements IRobotFunctionality {
 
   getFunctionalityList(): IRobotFunctionality[] {
     return [this];
+  }
+
+  getArgumentValue(identifier: string): any {
+    return this.actualArgumentValues.find((a) => a.identifier == identifier)
+      .value;
   }
 }

@@ -58,4 +58,12 @@ export class WorkflowElementDoSomethingComponent implements OnInit {
   delete() {
     this.deleteElementRequest.emit();
   }
+
+  parameterValueChanged(target: any, parameterIndex: number | string) {
+    if (!this.isNumber(parameterIndex))
+      throw new Error('parameterIndex must be a number');
+
+    this.functionality.actualArgumentValues[Number(parameterIndex)].value =
+      target.value;
+  }
 }

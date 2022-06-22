@@ -6,6 +6,7 @@ import { IRobotFunctionality } from '../../interfaces/robot-functionality/robot-
 export abstract class TriggerFunctionality implements IRobotFunctionality {
   type: RobotFunctionalityType = RobotFunctionalityType.trigger;
   followingElements: IRobotFunctionality[] = [];
+  abstract readonly actualArgumentValues: IRobotFunctinoalityArgument[];
 
   abstract identifier: string;
   abstract displayName: string;
@@ -18,5 +19,10 @@ export abstract class TriggerFunctionality implements IRobotFunctionality {
 
   getFunctionalityList(): IRobotFunctionality[] {
     return [this as IRobotFunctionality].concat(this.followingElements);
+  }
+
+  getArgumentValue(identifier: string): any {
+    return this.actualArgumentValues.find((a) => a.identifier === identifier)
+      .value;
   }
 }

@@ -3,6 +3,8 @@ import { RobotFunctionalityType } from '../../enums/robot-functinality-type.enum
 import { IRobotFunctinoalityArgument } from './robot-functionality-argument.interface';
 
 export interface IRobotFunctionality {
+  readonly actualArgumentValues: IRobotFunctinoalityArgument[];
+
   readonly identifier: string;
   readonly type: RobotFunctionalityType;
   readonly displayName: string;
@@ -14,4 +16,6 @@ export interface IRobotFunctionality {
   getFunctionalityList(): IRobotFunctionality[];
 
   copy(): IRobotFunctionality;
+
+  getArgumentValue(identifier: string): any;
 }

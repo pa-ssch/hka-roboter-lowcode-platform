@@ -18,6 +18,7 @@ export class AddElementButtonComponent implements OnInit {
 
   @Input()
   allowedElements: RobotFunctionalityType[];
+  // TODO: allowed elements should be determined by this component, based on the control before (and maybe after) the button
 
   public id: string;
 
@@ -47,7 +48,7 @@ export class AddElementButtonComponent implements OnInit {
   }
 
   addElement(robotFunctionality: IRobotFunctionality) {
-    this.addElementRequest.emit(robotFunctionality);
+    this.addElementRequest.emit(robotFunctionality.copy());
   }
 
   getIconFor(type: RobotFunctionalityType): string {
@@ -60,7 +61,7 @@ export class AddElementButtonComponent implements OnInit {
         return 'smart_toy';
       case RobotFunctionalityType.getSomething:
         return 'sensors';
-      case RobotFunctionalityType.ifThenElse:
+      case RobotFunctionalityType.ifElse:
         return 'account_tree';
       case RobotFunctionalityType.logic:
         return 'functions';
