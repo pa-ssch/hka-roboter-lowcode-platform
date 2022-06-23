@@ -1,1 +1,32 @@
-<p>textual-workflow-preview works!</p>
+<div class="button-row">
+  <button
+    *ngIf="!robotIsOn"
+    id="turn-robot-on"
+    mat-raised-button
+    (click)="turnOn()"
+  >
+    Einschalten
+  </button>
+  <button *ngIf="robotIsOn" id="run-button" mat-raised-button (click)="run()">
+    Ausführen
+  </button>
+  <button *ngIf="robotIsOn" id="step-button" mat-raised-button (click)="step()">
+    Schritt ausführen
+  </button>
+</div>
+
+<!-- alle anzeigen und der der current Step ist dann hervorheben-->
+
+<table *ngIf="robotIsOn">
+  <tr
+    *ngFor="let element of previewData.script; let i = index"
+    [class]="i == currentStep ? 'highlighted' : ''"
+  >
+    <td style="width: 15px !important">
+      {{ i == currentStep ? "*" : "" }}
+    </td>
+    <td [style]="'padding-left: ' + 10 * element.intention + 'px'">
+      {{ element.text }}
+    </td>
+  </tr>
+</table>

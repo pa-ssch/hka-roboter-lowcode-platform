@@ -32,6 +32,7 @@ export class TextPreviewGroup implements IPreviewGroup {
       });
     });
 
+    // interpret the script and determine the execution-order (importent when there are loops or if-else-statements)
     this.previewData.script.forEach((element: ScriptElement, index: number) => {
       this.previewData.steps.push(index);
     });
