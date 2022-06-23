@@ -11,5 +11,32 @@ export class VisualWorkflowPreviewComponent implements OnInit {
 
   constructor() {}
 
+  currentImage: string = '';
+  currentStep: number = 0;
+
   ngOnInit(): void {}
+
+  turnOn() {
+    this.currentImage = this.previewData[this.currentStep].src;
+    this.currentStep = 1;
+  }
+
+  async run() {
+    (<HTMLInputElement>document.getElementById('run-button')).disabled = true;
+    (<HTMLInputElement>document.getElementById('step-button')).disabled = true;
+    for (const element of this.previewData) {
+      if (element.src) this.currentImage = element.src;
+      else if (element.displayDuration)
+        await new Promise((f) => setTimeout(f, 1000 * element.displayDuration));
+    }
+  }
+
+  step() {
+    (<HTMLInputElement>document.getElementById('run-button')).disabled = true;
+    if (this.currentStep < this.previewData.length) {
+      if (this.previewData[this.currentStep].src)
+        this.currentImage = this.previewData[this.currentStep].src;
+      this.currentStep++;
+    }
+  }
 }

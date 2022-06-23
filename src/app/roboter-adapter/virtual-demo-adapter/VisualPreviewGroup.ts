@@ -12,6 +12,10 @@ export class VisualPreviewGroup implements IPreviewGroup {
     this.name = `Visualisierung Workflow ${workflowNumber}`;
     this.type = PreviewGroupType.visual;
     let robotState: string = '00';
+    this.previewData.push(
+      new ImagePreview(`/assets/virtual-demo-adapter/${robotState}.png`, 0)
+    );
+
     workflow.forEach((workflowElement) => {
       workflowElement.getFunctionalityList().forEach((functionality) => {
         if (functionality.identifier === 'wait') {
@@ -26,13 +30,14 @@ export class VisualPreviewGroup implements IPreviewGroup {
           lamp.toggle(functionality.getArgumentValue('new-light-state'));
           robotState = lamp.updateRobotState(robotState);
           this.previewData.push(
-            new ImagePreview(`/assets/img/${robotState}.jpg`, 0)
+            new ImagePreview(
+              `/assets/virtual-demo-adapter/${robotState}.png`,
+              0
+            )
           );
         }
       });
     });
-    // TODO: display this:
-    console.log(this.previewData);
   }
 }
 

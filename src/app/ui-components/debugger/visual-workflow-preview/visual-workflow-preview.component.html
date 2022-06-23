@@ -1,1 +1,27 @@
-<p>visual-workflow-preview works!</p>
+<div class="button-row">
+  <button
+    *ngIf="currentStep == 0"
+    id="turn-robot-on"
+    mat-raised-button
+    (click)="turnOn()"
+  >
+    Einschalten
+  </button>
+  <button
+    *ngIf="currentStep > 0"
+    id="run-button"
+    mat-raised-button
+    (click)="run()"
+  >
+    Ausführen
+  </button>
+  <button
+    *ngIf="currentStep > 0"
+    id="step-button"
+    mat-raised-button
+    (click)="step()"
+  >
+    Schritt ausführen
+  </button>
+</div>
+<img class="robot-image" [src]="currentImage" [alt]="currentImage" />
