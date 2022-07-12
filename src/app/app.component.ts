@@ -19,13 +19,15 @@ export class AppComponent {
       CookieManager.RobotTypeCookieName
     );
 
-    //TODO: error when the cookie is empty or does not exists
-    let parameterValues = JSON.parse(
-      this._cookieService.get(CookieManager.ParameterCookieName)
-    );
+    if (this._cookieService.check(CookieManager.ParameterCookieName)) {
+      let parameterValues = JSON.parse(
+        this._cookieService.get(CookieManager.ParameterCookieName)
+      );
 
-    let adapter = AdapterRegistration.getAdapterByIdentifier(roboterIdentifier);
-    this.adapterWorks = !adapter.validateParameter(parameterValues);
+      let adapter =
+        AdapterRegistration.getAdapterByIdentifier(roboterIdentifier);
+      this.adapterWorks = !adapter.validateParameter(parameterValues);
+    }
 
     let loggedInUser = this._cookieService.get(CookieManager.CurrentUserName);
     if (loggedInUser) this.userIsLoggedIn = true;
