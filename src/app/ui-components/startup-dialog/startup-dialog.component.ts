@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { CookieService } from 'ngx-cookie-service';
 import { CookieManager } from 'src/app/app.cookiemanager';
 import { IRobotAdapter } from 'src/app/roboter-adapter/adapter-definition/interfaces/robot-adapter.interface';
+import { MatSelectChange } from '@angular/material/select';
 
 @Component({
   selector: 'app-startup-dialog',
@@ -31,20 +32,7 @@ export class StartupDialogComponent implements OnInit {
     });
 
     // Initialize the parameter form controls
-    let maximumParameterCount = Math.max.apply(
-      Math,
-      this.robots.map((robot) => robot.parameter.length)
-    );
-
-    let parameterFormControls = Object.fromEntries(
-      Array.from({ length: maximumParameterCount + 1 }, (_, k) => [
-        'parameter' + k,
-        ['', Validators.required],
-      ])
-    );
-
-    this.parameterFormGroup = this._formBuilder.group(parameterFormControls);
-    this.parameterFormGroup.controls['parameter0'].setValue('n.a.');
+    this.refreshParametersForRobot(null);
 
     // Initialize the password form control
     this.passwordFormGroup = this._formBuilder.group({
@@ -92,8 +80,22 @@ export class StartupDialogComponent implements OnInit {
         }
       );
     else {
-      //TODO: does not work because all params are required, also when not visible
       stepper.next();
     }
+  }
+
+  refreshParametersForRobot(selectedRobot: IRobotAdapter) {
+    let maximumParameterCount = selectedRobot?.parameter.length ?? 0;
+    console.log(maximumParameterCount);
+
+    let parameterFormControls = Object.fromEntries(
+      Array.from({ length: maximumParameterCount + 1 }, (_, k) => [
+        'parameter' + k,
+        ['', Validators.required],
+      ])
+    );
+
+    this.parameterFormGroup = this._formBuilder.group(parameterFormControls);
+    this.parameterFormGroup.controls['parameter0'].setValue('n.a.');
   }
 }

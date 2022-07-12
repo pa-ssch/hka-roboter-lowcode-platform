@@ -6,7 +6,11 @@
       <ng-template matStepLabel>Roboter wählen</ng-template>
       <mat-form-field appearance="fill">
         <mat-label>Roboter wählen</mat-label>
-        <mat-select matInput formControlName="selectedRobot">
+        <mat-select
+          matInput
+          formControlName="selectedRobot"
+          (selectionChange)="refreshParametersForRobot($event.value)"
+        >
           <mat-option *ngFor="let robot of robots" [value]="robot">
             {{ robot.name }}
           </mat-option>

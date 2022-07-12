@@ -3,7 +3,6 @@ import { RobotFunctionalityArgument } from '../adapter-definition/default-implem
 import { RobotFunctionality as RobotFunctionality } from '../adapter-definition/default-implementations/robot-functionality.default';
 import { DefaultTriggerFunctionality as DefaultTriggerFunctionality } from '../adapter-definition/default-implementations/trigger-functionality.default';
 import { AdapterParameterType } from '../adapter-definition/enums/adapter-parameter-type.enum';
-import { PreviewGroupType } from '../adapter-definition/enums/preview-group-type.enum';
 import { RobotDataType } from '../adapter-definition/enums/robot-data-type.enum';
 import { RobotFunctionalityType } from '../adapter-definition/enums/robot-functinality-type.enum';
 import { IParameterDefinition } from '../adapter-definition/interfaces/parameter-definition.interface';
@@ -20,7 +19,6 @@ export class VirtualDemoAdapterDefinition implements IRobotAdapter {
 
   parameter: IParameterDefinition[] = [
     new ParameterDefinition('Beispiel 1', AdapterParameterType.boolean),
-    new ParameterDefinition('Beispiel 2', AdapterParameterType.number),
   ];
 
   functionality: IRobotFunctionality[] = [
