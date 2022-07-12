@@ -37,7 +37,6 @@ export class LoginDialogComponent implements OnInit {
         CookieManager.CurrentUserName,
         this.nameFormGroup.value.name
       );
-      //TODO: use indexedDB for the user management
       window.location.reload();
     }
   }
