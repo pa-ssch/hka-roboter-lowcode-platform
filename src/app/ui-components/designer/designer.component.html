@@ -1,14 +1,16 @@
 <div id="designer-div">
-  <app-workflow-container [workflows]="getWorkflows()"></app-workflow-container>
-  <div class="workflow-div">
-    <div class="element-div">
-      <add-element-button
-        id="new-workflow-button"
-        [allowedElements]="[elementType.whileLoop, elementType.trigger]"
-        (addElementRequest)="addNewWorkflow($event)"
-      ></add-element-button>
+  <div id="inner-designer-div">
+    <app-workflow-container
+      [workflows]="getWorkflows()"
+    ></app-workflow-container>
+    <div class="workflow-div">
+      <div class="element-div">
+        <add-element-button
+          id="new-workflow-button"
+          [allowedElements]="[elementType.whileLoop, elementType.trigger]"
+          (addElementRequest)="addNewWorkflow($event)"
+        ></add-element-button>
+      </div>
     </div>
   </div>
 </div>
-
-<!-- TODO: vertical overflow-->
