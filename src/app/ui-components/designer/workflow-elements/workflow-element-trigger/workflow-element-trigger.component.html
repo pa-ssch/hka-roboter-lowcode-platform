@@ -1,4 +1,12 @@
-<div class="trigger-element-div">
+<div
+  class="trigger-element-div"
+  [ngStyle]="{
+    'border-radius':
+      getFollowingElements().length == 0
+        ? '25px 25px 25px 25px'
+        : '25px 25px 0 0'
+  }"
+>
   {{ functionality.parameterizedDisplayName }}
 </div>
 
