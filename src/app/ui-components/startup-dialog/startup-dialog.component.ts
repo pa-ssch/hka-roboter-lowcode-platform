@@ -66,27 +66,25 @@ export class StartupDialogComponent implements OnInit {
     );
     parameterValues.shift();
 
-    let errorMessage =
-      this.selectRobotFormGroup.value.selectedRobot.validateParameter(
-        parameterValues
-      );
-
-    if (errorMessage)
-      this._snackBar.open(
-        `Die eingegebenen Parameter sind nicht gültig: ${errorMessage}`,
-        'Ok',
-        {
-          duration: 3000,
+    this.selectRobotFormGroup.value.selectedRobot
+      .validateParameter(parameterValues)
+      .then((errorMessage: string) => {
+        if (errorMessage)
+          this._snackBar.open(
+            `Die eingegebenen Parameter sind nicht gültig: ${errorMessage}`,
+            'Ok',
+            {
+              duration: 3000,
+            }
+          );
+        else {
+          stepper.next();
         }
-      );
-    else {
-      stepper.next();
-    }
+      });
   }
 
   refreshParametersForRobot(selectedRobot: IRobotAdapter) {
     let maximumParameterCount = selectedRobot?.parameter.length ?? 0;
-    console.log(maximumParameterCount);
 
     let parameterFormControls = Object.fromEntries(
       Array.from({ length: maximumParameterCount + 1 }, (_, k) => [

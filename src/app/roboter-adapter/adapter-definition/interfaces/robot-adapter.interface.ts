@@ -8,7 +8,7 @@ export interface IRobotAdapter {
   readonly name: string;
   readonly parameter: IParameterDefinition[];
   readonly functionality: IRobotFunctionality[];
-  validateParameter(parameterValues: AdapterParameterType[]): string;
+  validateParameter(parameterValues: AdapterParameterType[]): Promise<string>;
   setNewWorkflows(workflows: IRobotFunctionality[][]): void;
   getAvailablePreviews(): IPreviewGroup[];
 }

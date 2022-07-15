@@ -30,6 +30,8 @@ import { WorkflowContainerComponent } from './ui-components/designer/workflow-co
 import { TextualWorkflowPreviewComponent } from './ui-components/debugger/textual-workflow-preview/textual-workflow-preview.component';
 import { VisualWorkflowPreviewComponent } from './ui-components/debugger/visual-workflow-preview/visual-workflow-preview.component';
 import { CustomWorkflowPreviewComponent } from './ui-components/debugger/custom-workflow-preview/custom-workflow-preview.component';
+import { HttpClientModule } from '@angular/common/http';
+import { VectorAdapterModule } from './roboter-adapter/vector-adapter/vector-adapter.module';
 
 @NgModule({
   declarations: [
@@ -64,6 +66,8 @@ import { CustomWorkflowPreviewComponent } from './ui-components/debugger/custom-
     MatSnackBarModule,
     MatMenuModule,
     MatIconModule,
+    VectorAdapterModule,
+    HttpClientModule,
   ],
   providers: [CookieService],
   bootstrap: [AppComponent],

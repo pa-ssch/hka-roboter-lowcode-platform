@@ -72,7 +72,7 @@ export class VirtualDemoAdapterDefinition implements IRobotAdapter {
       ]
     ),
   ];
-  validateParameter = (_: AdapterParameterType[]): string => '';
+  validateParameter = async (_: AdapterParameterType[]): Promise<string> => '';
 
   setNewWorkflows(workflows: IRobotFunctionality[][]): void {
     this.currentWorkflows = workflows;

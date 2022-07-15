@@ -1,3 +1,5 @@
+import { Component } from '@angular/core';
+import { delay, firstValueFrom, retry } from 'rxjs';
 import { ParameterDefinition } from '../adapter-definition/default-implementations/parameter-definition.default';
 import { AdapterParameterType } from '../adapter-definition/enums/adapter-parameter-type.enum';
 import { IParameterDefinition } from '../adapter-definition/interfaces/parameter-definition.interface';
@@ -12,6 +14,7 @@ import { VectorLowerArmsFunctionality } from './functionalities/lower-arms.vecto
 import { VectorOnStartupFunctionality } from './functionalities/on-startup.vector-functionality';
 import { VectorRotateFunctionality } from './functionalities/rotate.vector-functionality';
 import { VectorWaitFunctionality } from './functionalities/wait.vector-functionality';
+import { VectorApi } from './vector-adapter.module';
 
 export class VectorAdapterDefinition implements IRobotAdapter {
   identifier: string = 'vector-robot';
@@ -37,12 +40,17 @@ export class VectorAdapterDefinition implements IRobotAdapter {
     new VectorLowerArmsFunctionality(),
   ];
 
-  validateParameter(parameterValues: (string | number | boolean)[]): string {
-    if (parameterValues[0] == 'localhost:1234') {
-      return '';
-    } else {
-      return 'Der Roboter ist nicht erreichbar';
+  async validateParameter(
+    parameterValues: (string | number | boolean)[]
+  ): Promise<string> {
+    if (typeof parameterValues[0] === 'string')
+      VectorApi.setUrl(parameterValues[0]);
+    try {
+      if ((await VectorApi.getStatus()) == 'connected') return '';
+    } catch (error) {
+      console.log(error);
     }
+    return 'Der Roboter ist nicht erreichbar';
   }
 
   setNewWorkflows(workflows: IRobotFunctionality[][]): void {
