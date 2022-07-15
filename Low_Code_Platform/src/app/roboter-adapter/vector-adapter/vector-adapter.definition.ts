@@ -53,6 +53,18 @@ export class VectorAdapterDefinition implements IRobotAdapter {
     return 'Der Roboter ist nicht erreichbar';
   }
 
+  canExecute(): boolean {
+    return true;
+  }
+
+  supportsParallelWorkflows(): boolean {
+    return false;
+  }
+
+  supportsPreview(): boolean {
+    return true;
+  }
+
   setNewWorkflows(workflows: IRobotFunctionality[][]): void {
     throw new Error('Method not implemented.');
     // TODO: ...

@@ -1,10 +1,14 @@
 <div id="toolbar-div">
-  <button mat-button (click)="openPreview()">Vorschau</button>
-  <button mat-button>Starten</button>
-  <button mat-button>Speichern</button>
-  <button mat-button>Öffnen</button>
+  <button mat-button *ngIf="previewAvailable" (click)="openPreview()">
+    Vorschau
+  </button>
+  <button mat-button *ngIf="executeAvailable" (click)="runWorkflows()">
+    Starten
+  </button>
+  <button mat-button (click)="saveWorkflows()">Speichern</button>
+  <button mat-button (click)="loadWorkflows()">Öffnen</button>
   <button mat-button (click)="logout()">Abmelden</button>
-  <!-- make this a mat-menu or sidenav or mat-toolbar -->
+  <!-- TODO make this a mat-menu or sidenav or mat-toolbar -->
 </div>
 <div id="main-content">
   <div id="designer-div" class="main-component-div">

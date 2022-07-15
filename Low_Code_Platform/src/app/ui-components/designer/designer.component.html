@@ -3,7 +3,10 @@
     <app-workflow-container
       [workflows]="getWorkflows()"
     ></app-workflow-container>
-    <div class="workflow-div">
+    <div
+      class="workflow-div"
+      *ngIf="parallelWorkflowsAllowed || getWorkflows().length == 0"
+    >
       <div class="element-div">
         <add-element-button
           id="new-workflow-button"

@@ -11,4 +11,7 @@ export interface IRobotAdapter {
   validateParameter(parameterValues: AdapterParameterType[]): Promise<string>;
   setNewWorkflows(workflows: IRobotFunctionality[][]): void;
   getAvailablePreviews(): IPreviewGroup[];
+  supportsPreview(): boolean;
+  canExecute(): boolean;
+  supportsParallelWorkflows(): boolean;
 }

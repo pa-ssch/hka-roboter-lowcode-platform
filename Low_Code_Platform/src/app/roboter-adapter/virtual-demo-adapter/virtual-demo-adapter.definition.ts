@@ -88,6 +88,18 @@ export class VirtualDemoAdapterDefinition implements IRobotAdapter {
 
     return previews;
   }
+
+  canExecute(): boolean {
+    return false;
+  }
+
+  supportsParallelWorkflows(): boolean {
+    return true;
+  }
+
+  supportsPreview(): boolean {
+    return true;
+  }
 }
 
 export abstract class DemoBotLamp {

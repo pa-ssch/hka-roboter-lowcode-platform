@@ -26,7 +26,9 @@ export class AppComponent {
 
       let adapter =
         AdapterRegistration.getAdapterByIdentifier(roboterIdentifier);
-      this.adapterWorks = !adapter.validateParameter(parameterValues);
+      adapter
+        .validateParameter(parameterValues)
+        .then((error) => (this.adapterWorks = !error));
     }
 
     let loggedInUser = this._cookieService.get(CookieManager.CurrentUserName);
