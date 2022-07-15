@@ -5,6 +5,7 @@ import { CookieManager } from 'src/app/app.cookiemanager';
 import { WorkflowManager } from 'src/app/app.workflowmanager';
 import { IPreviewGroup } from 'src/app/roboter-adapter/adapter-definition/interfaces/preview/preview-group.interface';
 import { IRobotAdapter } from 'src/app/roboter-adapter/adapter-definition/interfaces/robot-adapter.interface';
+import { IRobotFunctionality } from 'src/app/roboter-adapter/adapter-definition/interfaces/robot-functionality/robot-functionality.interface';
 
 @Component({
   selector: 'app-workspace',
@@ -35,6 +36,10 @@ export class WorkspaceComponent {
     );
   }
 
+  getCurrentUserName(): string {
+    return this._cookieService.get(CookieManager.CurrentUserName);
+  }
+
   openPreview() {
     let adapter = this.getCurrentRobotAdapter();
     adapter.setNewWorkflows(WorkflowManager.getWorkflows());
@@ -42,14 +47,32 @@ export class WorkspaceComponent {
   }
 
   runWorkflows() {
-    //TODO ...
+    let adapter = this.getCurrentRobotAdapter();
+    adapter.setNewWorkflows(WorkflowManager.getWorkflows());
+    // TODO: adapter.execute();
   }
 
   saveWorkflows() {
-    //TODO ...
+    saveText(
+      JSON.stringify(WorkflowManager.getWorkflows()),
+      `Workflow-${this.getCurrentUserName()}.hka`
+    );
   }
 
-  loadWorkflows() {
-    //TODO ...
+  public async onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    let newWorkflows: IRobotFunctionality[][] = JSON.parse(await file.text());
+    WorkflowManager.overWriteWorkflows(newWorkflows);
+    // TODO: does not works yet
   }
+}
+
+function saveText(text: string, filename: string) {
+  let a = document.createElement('a');
+  a.setAttribute(
+    'href',
+    'data:text/plain;charset=utf-u,' + encodeURIComponent(text)
+  );
+  a.setAttribute('download', filename);
+  a.click();
 }

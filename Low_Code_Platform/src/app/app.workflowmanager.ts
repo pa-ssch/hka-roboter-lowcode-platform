@@ -1,7 +1,11 @@
 import { IRobotFunctionality } from './roboter-adapter/adapter-definition/interfaces/robot-functionality/robot-functionality.interface';
 
 export class WorkflowManager {
-  private static readonly workflows: IRobotFunctionality[][] = [];
+  static overWriteWorkflows(newWorkflows: any) {
+    if (newWorkflows instanceof Array) this.workflows = newWorkflows;
+  }
+
+  private static workflows: IRobotFunctionality[][] = [];
 
   public static push(workflow: IRobotFunctionality[]): void {
     let workflowCopy: IRobotFunctionality[] = [];

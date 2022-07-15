@@ -5,10 +5,9 @@
   <button mat-button *ngIf="executeAvailable" (click)="runWorkflows()">
     Starten
   </button>
-  <button mat-button (click)="saveWorkflows()">Speichern</button>
-  <button mat-button (click)="loadWorkflows()">Öffnen</button>
+  <button mat-button *ngIf="false" (click)="saveWorkflows()">Speichern</button>
+  <button mat-button *ngIf="false" (click)="fileUpload.click()">Öffnen</button>
   <button mat-button (click)="logout()">Abmelden</button>
-  <!-- TODO make this a mat-menu or sidenav or mat-toolbar -->
 </div>
 <div id="main-content">
   <div id="designer-div" class="main-component-div">
@@ -18,3 +17,12 @@
     <app-debugger [previewGroups]="availablePreviews"></app-debugger>
   </div>
 </div>
+
+<input
+  hidden
+  #fileUpload
+  accept=".hka"
+  type="file"
+  class="file-input"
+  (change)="onFileSelected($event)"
+/>
