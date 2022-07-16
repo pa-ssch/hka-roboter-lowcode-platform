@@ -18,7 +18,7 @@ export class AddElementButtonComponent implements OnInit {
 
   @Input()
   allowedElements: RobotFunctionalityType[];
-  // TODO: allowed elements should be determined by this component, based on the control before (and maybe after) the button
+  // TODO (low prio): allowed elements should be determined by this component, based on the control before (and maybe after) the button
 
   public id: string;
 

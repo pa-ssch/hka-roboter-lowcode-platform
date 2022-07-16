@@ -8,13 +8,22 @@ import { Component, Input, OnInit } from '@angular/core';
 export class VisualWorkflowPreviewComponent implements OnInit {
   @Input()
   previewData: any;
+  @Input()
+  isPreviewMode: boolean;
 
   constructor() {}
 
   currentImage: string = '';
   currentStep: number = 0;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (!this.isPreviewMode) {
+      this.currentImage = this.previewData[this.currentStep].src;
+      this.currentStep = 1;
+      // TODO: refresh current state permanently with an execute() call (delegate to previewdata)
+      //--> refresh image
+    }
+  }
 
   turnOn() {
     this.currentImage = this.previewData[this.currentStep].src;

@@ -9,14 +9,17 @@
       <app-textual-workflow-preview
         *ngSwitchCase="previewGroupType.textual"
         [previewData]="previewGroup.previewData"
+        [isPreviewMode]="!previewGroup.isExecutionMode"
       ></app-textual-workflow-preview>
       <app-visual-workflow-preview
         *ngSwitchCase="previewGroupType.visual"
         [previewData]="previewGroup.previewData"
+        [isPreviewMode]="!previewGroup.isExecutionMode"
       ></app-visual-workflow-preview>
       <app-custom-workflow-preview
         *ngSwitchCase="previewGroupType.custom"
         [previewData]="previewGroup"
+        [isPreviewMode]="!previewGroup.isExecutionMode"
       ></app-custom-workflow-preview>
     </mat-tab>
   </mat-tab-group>

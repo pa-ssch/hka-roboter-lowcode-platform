@@ -8,12 +8,21 @@ import { Component, Input, OnInit } from '@angular/core';
 export class TextualWorkflowPreviewComponent implements OnInit {
   @Input()
   previewData: any;
+  @Input()
+  isPreviewMode: boolean;
+
   currentStep: number = 0;
   robotIsOn: boolean = false;
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (!this.isPreviewMode) {
+      this.robotIsOn = true;
+      // TODO: refresh current state permanently with an execute() call (delegate to previewdata)
+      //--> refresh the step number
+    }
+  }
 
   turnOn() {
     this.robotIsOn = true;

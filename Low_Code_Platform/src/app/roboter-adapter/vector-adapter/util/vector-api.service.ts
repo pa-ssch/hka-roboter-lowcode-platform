@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
+import { TriggerFunctionality } from '../../adapter-definition/abstract-classes/robot-functionality/robot-functionality-trigger.abstract';
 import { IRobotFunctionality } from '../../adapter-definition/interfaces/robot-functionality/robot-functionality.interface';
 
 @Injectable({
@@ -23,13 +24,32 @@ export class VectorApiService {
     );
   }
 
-  async putWorkflow(workflow: IRobotFunctionality[]) {
-    // TODO: send current workflow to vector
-    throw new Error('Method not implemented.');
+  putWorkflow(workflow: IRobotFunctionality[]) {
+    let transferable = workflow.map((e) => new TransferableWorkflowElement(e));
+    this.httpClient.put(this.url + 'vector/workflow', transferable);
   }
 
   async execute(): Promise<number> {
-    // TODO: trigger execution if already executing return the current step.
-    throw new Error('Method not implemented.');
+    return firstValueFrom(
+      this.httpClient.post<number>(this.url + 'vector/workflow', {
+        responseType: 'text',
+      })
+    );
+  }
+}
+
+class TransferableWorkflowElement {
+  readonly identifier: string;
+  readonly arguments: any[];
+  readonly followingElements: TransferableWorkflowElement[] = [];
+
+  constructor(functionality: IRobotFunctionality) {
+    this.identifier = functionality.identifier;
+    this.arguments = functionality.actualArgumentValues.map((f) => f.value);
+    if (functionality instanceof TriggerFunctionality) {
+      this.followingElements = functionality.followingElements.map(
+        (f) => new TransferableWorkflowElement(f)
+      );
+    }
   }
 }

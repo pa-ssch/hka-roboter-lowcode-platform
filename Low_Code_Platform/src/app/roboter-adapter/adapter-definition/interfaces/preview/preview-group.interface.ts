@@ -4,4 +4,5 @@ export interface IPreviewGroup {
   readonly name: string;
   readonly type: PreviewGroupType;
   readonly previewData: any;
+  isExecutionMode: boolean;
 }

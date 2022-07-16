@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { IPreviewGroup } from 'src/app/roboter-adapter/adapter-definition/interfaces/preview/preview-group.interface';
 
 @Component({
   selector: 'app-custom-workflow-preview',
@@ -8,7 +7,9 @@ import { IPreviewGroup } from 'src/app/roboter-adapter/adapter-definition/interf
 })
 export class CustomWorkflowPreviewComponent {
   @Input()
-  previewData: IPreviewGroup;
+  previewData: any;
+  @Input()
+  isPreviewMode: boolean;
 
   constructor() {
     throw new Error('Preview-type not implemented.');

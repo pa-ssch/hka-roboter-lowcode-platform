@@ -7,6 +7,7 @@ export class DemoRobotTextPreviewGroup implements IPreviewGroup {
   name: string;
   type: PreviewGroupType;
   previewData: TextPreviewData;
+  isExecutionMode: boolean;
 
   constructor(workflow: IRobotFunctionality[], workflowNumber: number) {
     this.name = `Debugging Workflow ${workflowNumber}`;
