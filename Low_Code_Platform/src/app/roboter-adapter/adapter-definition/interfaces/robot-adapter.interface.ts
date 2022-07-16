@@ -12,6 +12,7 @@ export interface IRobotAdapter {
   setNewWorkflows(workflows: IRobotFunctionality[][]): void;
   getAvailablePreviews(): IPreviewGroup[];
   supportsPreview(): boolean;
+  execute(): IPreviewGroup[];
   canExecute(): boolean;
   supportsParallelWorkflows(): boolean;
 }

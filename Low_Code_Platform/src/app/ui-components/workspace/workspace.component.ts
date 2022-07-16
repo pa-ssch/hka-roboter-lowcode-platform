@@ -47,9 +47,11 @@ export class WorkspaceComponent {
   }
 
   runWorkflows() {
+    if (!this.executeAvailable) return;
+
     let adapter = this.getCurrentRobotAdapter();
     adapter.setNewWorkflows(WorkflowManager.getWorkflows());
-    // TODO: adapter.execute();
+    this.availablePreviews = adapter.execute();
   }
 
   saveWorkflows() {
@@ -63,7 +65,7 @@ export class WorkspaceComponent {
     const file: File = event.target.files[0];
     let newWorkflows: IRobotFunctionality[][] = JSON.parse(await file.text());
     WorkflowManager.overWriteWorkflows(newWorkflows);
-    // TODO: does not works yet
+    // TODO: Does not works yet
   }
 }
 

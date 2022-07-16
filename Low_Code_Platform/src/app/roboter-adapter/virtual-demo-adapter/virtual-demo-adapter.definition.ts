@@ -93,6 +93,10 @@ export class VirtualDemoAdapterDefinition implements IRobotAdapter {
     return false;
   }
 
+  execute(): IPreviewGroup[] {
+    return null;
+  }
+
   supportsParallelWorkflows(): boolean {
     return true;
   }

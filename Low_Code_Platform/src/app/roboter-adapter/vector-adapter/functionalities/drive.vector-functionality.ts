@@ -15,7 +15,7 @@ export class VectorDriveFunctionality extends RobotFunctionality {
         new RobotFunctionalityArgument(
           'distance',
           'Strecke in cm',
-          RobotDataType.number // TODO: acuch komma
+          RobotDataType.number
         ),
       ]
     );

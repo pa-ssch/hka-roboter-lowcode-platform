@@ -15,7 +15,7 @@ export class VectorRotateFunctionality extends RobotFunctionality {
         new RobotFunctionalityArgument(
           'degree',
           'Rotation in Grad (-360 bis 360)',
-          RobotDataType.number // TODO: komma, -360 bis 360
+          RobotDataType.number
         ),
       ]
     );

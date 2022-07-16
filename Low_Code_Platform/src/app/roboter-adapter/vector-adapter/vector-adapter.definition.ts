@@ -1,8 +1,7 @@
-import { Component } from '@angular/core';
-import { delay, firstValueFrom, retry } from 'rxjs';
 import { ParameterDefinition } from '../adapter-definition/default-implementations/parameter-definition.default';
 import { AdapterParameterType } from '../adapter-definition/enums/adapter-parameter-type.enum';
 import { IParameterDefinition } from '../adapter-definition/interfaces/parameter-definition.interface';
+import { IPreviewGroup } from '../adapter-definition/interfaces/preview/preview-group.interface';
 import { IRobotAdapter } from '../adapter-definition/interfaces/robot-adapter.interface';
 import { IRobotFunctionality } from '../adapter-definition/interfaces/robot-functionality/robot-functionality.interface';
 import { VectorDriveFunctionality } from './functionalities/drive.vector-functionality';
@@ -70,7 +69,12 @@ export class VectorAdapterDefinition implements IRobotAdapter {
     // TODO: ...
   }
 
-  getAvailablePreviews(): any[] {
+  getAvailablePreviews(): IPreviewGroup[] {
+    throw new Error('Method not implemented.');
+    // TODO: ...
+  }
+
+  execute(): IPreviewGroup[] {
     throw new Error('Method not implemented.');
     // TODO: ...
   }
