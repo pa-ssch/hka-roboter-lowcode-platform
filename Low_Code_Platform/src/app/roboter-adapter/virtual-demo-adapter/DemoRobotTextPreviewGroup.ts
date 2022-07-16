@@ -3,7 +3,7 @@ import { IPreviewGroup } from '../adapter-definition/interfaces/preview/preview-
 import { IRobotFunctinoalityArgument } from '../adapter-definition/interfaces/robot-functionality/robot-functionality-argument.interface';
 import { IRobotFunctionality } from '../adapter-definition/interfaces/robot-functionality/robot-functionality.interface';
 
-export class TextPreviewGroup implements IPreviewGroup {
+export class DemoRobotTextPreviewGroup implements IPreviewGroup {
   name: string;
   type: PreviewGroupType;
   previewData: TextPreviewData;

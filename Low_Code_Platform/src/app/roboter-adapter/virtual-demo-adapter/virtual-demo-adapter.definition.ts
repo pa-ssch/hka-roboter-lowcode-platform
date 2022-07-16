@@ -9,8 +9,8 @@ import { IParameterDefinition } from '../adapter-definition/interfaces/parameter
 import { IPreviewGroup } from '../adapter-definition/interfaces/preview/preview-group.interface';
 import { IRobotAdapter } from '../adapter-definition/interfaces/robot-adapter.interface';
 import { IRobotFunctionality } from '../adapter-definition/interfaces/robot-functionality/robot-functionality.interface';
-import { TextPreviewGroup } from './TextPreviewGroup';
-import { VisualPreviewGroup } from './VisualPreviewGroup';
+import { DemoRobotTextPreviewGroup } from './DemoRobotTextPreviewGroup';
+import { DemoRobotVisualPreviewGroup } from './DemoRobotVisualPreviewGroup';
 
 export class VirtualDemoAdapterDefinition implements IRobotAdapter {
   identifier: string = 'virtual-demo-robot';
@@ -82,8 +82,8 @@ export class VirtualDemoAdapterDefinition implements IRobotAdapter {
     let previews: IPreviewGroup[] = [];
 
     this.currentWorkflows.forEach((workflow, index) => {
-      previews.push(new TextPreviewGroup(workflow, index + 1));
-      previews.push(new VisualPreviewGroup(workflow, index + 1));
+      previews.push(new DemoRobotTextPreviewGroup(workflow, index + 1));
+      previews.push(new DemoRobotVisualPreviewGroup(workflow, index + 1));
     });
 
     return previews;
@@ -93,7 +93,7 @@ export class VirtualDemoAdapterDefinition implements IRobotAdapter {
     return false;
   }
 
-  execute(): IPreviewGroup[] {
+  execute(): Promise<number> {
     return null;
   }
 

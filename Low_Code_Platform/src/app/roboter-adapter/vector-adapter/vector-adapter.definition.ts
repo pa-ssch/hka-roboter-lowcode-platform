@@ -13,6 +13,8 @@ import { VectorLowerArmsFunctionality } from './functionalities/lower-arms.vecto
 import { VectorOnStartupFunctionality } from './functionalities/on-startup.vector-functionality';
 import { VectorRotateFunctionality } from './functionalities/rotate.vector-functionality';
 import { VectorWaitFunctionality } from './functionalities/wait.vector-functionality';
+import { TextPreviewGroup as VectorTextPreviewGroup } from './util/VectorTextPreviewGroup';
+import { VisualPreviewGroup as VectorVisualPreviewGroup } from './util/VectorVisualPreviewGroup';
 import { VectorApi } from './vector-adapter.module';
 
 export class VectorAdapterDefinition implements IRobotAdapter {
@@ -65,17 +67,15 @@ export class VectorAdapterDefinition implements IRobotAdapter {
   }
 
   setNewWorkflows(workflows: IRobotFunctionality[][]): void {
-    throw new Error('Method not implemented.');
-    // TODO: ...
+    if (workflows.length == 1) VectorApi.putWorkflow(workflows[0]);
+    else throw new Error('Vector currently supports only one workflow');
   }
 
   getAvailablePreviews(): IPreviewGroup[] {
-    throw new Error('Method not implemented.');
-    // TODO: ...
+    return [new VectorTextPreviewGroup(), new VectorVisualPreviewGroup()];
   }
 
-  execute(): IPreviewGroup[] {
-    throw new Error('Method not implemented.');
-    // TODO: ...
+  async execute(): Promise<number> {
+    return VectorApi.execute();
   }
 }

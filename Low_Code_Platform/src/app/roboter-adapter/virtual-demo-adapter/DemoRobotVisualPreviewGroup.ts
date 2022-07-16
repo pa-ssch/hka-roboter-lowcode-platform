@@ -3,7 +3,7 @@ import { IPreviewGroup } from '../adapter-definition/interfaces/preview/preview-
 import { IRobotFunctionality } from '../adapter-definition/interfaces/robot-functionality/robot-functionality.interface';
 import { DemoBotLamp } from './virtual-demo-adapter.definition';
 
-export class VisualPreviewGroup implements IPreviewGroup {
+export class DemoRobotVisualPreviewGroup implements IPreviewGroup {
   name: string;
   type: PreviewGroupType;
   previewData: ImagePreview[] = [];

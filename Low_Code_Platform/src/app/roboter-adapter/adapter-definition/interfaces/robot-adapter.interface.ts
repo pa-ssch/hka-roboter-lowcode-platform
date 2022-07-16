@@ -12,7 +12,11 @@ export interface IRobotAdapter {
   setNewWorkflows(workflows: IRobotFunctionality[][]): void;
   getAvailablePreviews(): IPreviewGroup[];
   supportsPreview(): boolean;
-  execute(): IPreviewGroup[];
+  /**
+   * Triggers execution if execution is currently not running. Otherwise return the current step acording to the preview
+   * @returns {number} Current Workflowstep (same as in preview)
+   */
+  execute(): Promise<number>;
   canExecute(): boolean;
   supportsParallelWorkflows(): boolean;
 }

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { VectorAdapterDefinition } from './vector-adapter.definition';
 import { IRobotAdapter } from '../adapter-definition/interfaces/robot-adapter.interface';
-import { VectorApiService } from './vector-api.service';
+import { VectorApiService } from './util/vector-api.service';
 
 export let VectorApi: VectorApiService;
 
