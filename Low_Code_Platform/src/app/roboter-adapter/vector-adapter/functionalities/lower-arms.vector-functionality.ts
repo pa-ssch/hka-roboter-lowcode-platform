@@ -14,7 +14,7 @@ export class VectorLowerArmsFunctionality extends RobotFunctionality {
       'lower-arms',
       RobotFunctionalityType.doSomething,
       'Arme absetzen',
-      '{0} absetzen',
+      'Arme {0} absetzen',
       RobotDataType.void,
       () => [
         new RobotFunctionalityArgument(

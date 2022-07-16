@@ -9,7 +9,7 @@ export class VectorArmsSpeedSlow extends VectorArmsSpeed {
   }
 
   toString(): string {
-    return 'Langsam';
+    return 'langsam';
   }
 }
 
@@ -19,7 +19,7 @@ export class VectorArmsSpeedModerate extends VectorArmsSpeed {
   }
 
   toString(): string {
-    return 'Moderat';
+    return 'moderat';
   }
 }
 
@@ -29,6 +29,6 @@ export class VectorArmsSpeedFast extends VectorArmsSpeed {
   }
 
   toString(): string {
-    return 'Schnell';
+    return 'schnell';
   }
 }

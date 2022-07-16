@@ -14,7 +14,7 @@ export class VectorLiftArmsFunctionality extends RobotFunctionality {
       'lift-arms',
       RobotFunctionalityType.doSomething,
       'Arme anheben',
-      '{0} anheben',
+      'Arme {0} anheben',
       RobotDataType.void,
       () => [
         new RobotFunctionalityArgument(
