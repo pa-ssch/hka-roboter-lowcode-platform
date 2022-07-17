@@ -45,10 +45,14 @@ namespace VectorSDKMapper.Controllers.Data
 
         internal async Task<int> Execute()
         {
-            if(_currentExecutionStep == 0)
+            lock (_flatWorkflowData)
             {
-                _currentExecutionStep = 1;
-                ExecuteWorkflow();
+                if (_currentExecutionStep == 0)
+                {
+                    Console.WriteLine(DateTime.Now.ToLongTimeString());
+                    _currentExecutionStep = 1;
+                    ExecuteWorkflow();
+                }
             }
 
             return await Task.Run(() => _currentExecutionStep);
@@ -90,10 +94,12 @@ namespace VectorSDKMapper.Controllers.Data
                     case "lift-arms":
                         step.Arguments[0].TryGetProperty("speedLevel", out var liftSpeed);
                         await robot.Motors.SetLiftMotor(1 * liftSpeed.GetInt32());
+                        await Task.Delay(1000 / liftSpeed.GetInt32());
                         break;
                     case "lower-arms":
                         step.Arguments[0].TryGetProperty("speedLevel", out var lowerSpeed);
                         await robot.Motors.SetLiftMotor(-1 * lowerSpeed.GetInt32());
+                        await Task.Delay(1000 / lowerSpeed.GetInt32());
                         break;
                     case "on-startup":
                         break;
@@ -102,7 +108,8 @@ namespace VectorSDKMapper.Controllers.Data
                         await robot.Behavior.TurnInPlace(rotationInDegrees.Degrees());
                         break;
                     case "wait":
-                        await Task.Delay((int)(step.Arguments[0].GetDouble() * 1000));
+                        float.TryParse(step.Arguments[0].GetString(), out var delay);
+                        await Task.Delay((int)(delay * 1000));
                         break;
                 }
 
