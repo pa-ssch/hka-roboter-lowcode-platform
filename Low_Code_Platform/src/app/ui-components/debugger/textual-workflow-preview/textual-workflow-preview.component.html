@@ -27,15 +27,15 @@
 
 <!-- alle anzeigen und der der current Step ist dann hervorheben-->
 
-<table *ngIf="robotIsOn">
+<table *ngIf="robotIsOn" cellspacing="0">
   <tr
     *ngFor="let element of previewData.script; let i = index"
     [class]="i == currentStep ? 'highlighted' : ''"
   >
-    <td style="width: 15px !important">
-      {{ i == currentStep ? "*" : "" }}
+    <td style="width: 50px !important; padding-left: 10px">
+      {{ i == currentStep ? "➤" : "" }}
     </td>
-    <td [style]="'padding-left: ' + 10 * element.intention + 'px'">
+    <td [style]="'padding-left: ' + 20 * (element.intention + 1) + 'px'">
       {{ element.text }}
     </td>
   </tr>
