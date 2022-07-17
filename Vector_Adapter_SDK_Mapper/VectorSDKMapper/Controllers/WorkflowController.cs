@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using VectorSDKMapper.Controllers.Data;
+using System.Linq;
 
 namespace VectorSDKMapper.Controllers
 {
@@ -6,31 +8,19 @@ namespace VectorSDKMapper.Controllers
     [Route("vector/[controller]")]
     public class WorkflowController : ControllerBase
     {
-        private readonly ILogger<VectorController> _logger;
-
-        public WorkflowController(ILogger<VectorController> logger) => _logger = logger;
+        private readonly WorkflowManager _manager = new();
 
         [HttpGet(Name = "GetPreviewData")]
-        public async Task<ActionResult<object>> GetPreviewData()
-        {
-            _logger.LogInformation("Get Workflow preview");
-            return "preview";
-        }
+        public async Task<ImagePreview[]> GetPreviewData() => await _manager.GetPreviewData();
 
         [HttpPut(Name = "PutWorkflow")]
-        public async Task<IActionResult> PutWorkflow(object workflowData)
+        public async Task<IActionResult> PutWorkflow(WorkflowElement[] workflowData)
         {
-            _logger.LogInformation("Put new Workflow: ", workflowData);
-
+            await _manager.PutWorkflow(workflowData);
             return NoContent();
         }
 
         [HttpPost(Name = "ExecuteWorkflow")]
-        public async Task<IActionResult> ExecuteWorkflow()
-        {
-            _logger.LogInformation("Execute Workflow and return information ");
-
-            return NoContent();
-        }
+        public async Task<int> ExecuteWorkflow() => await _manager.Execute();
     }
 }

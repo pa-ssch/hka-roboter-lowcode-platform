@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace VectorSDKMapper.Controllers
@@ -8,6 +7,6 @@ namespace VectorSDKMapper.Controllers
     public class VectorController : ControllerBase
     {
         [HttpGet(Name = "GetState")]
-        public async Task<ActionResult<string>> GetState() => Content("connected");
+        public async Task<ActionResult<string>> GetState() => await Task.Run(() => Content("connected"));
     }
 }

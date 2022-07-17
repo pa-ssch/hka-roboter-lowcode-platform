@@ -5,8 +5,10 @@ export abstract class VectorArmsSpeed {
 
 export class VectorArmsSpeedSlow extends VectorArmsSpeed {
   getSpeedLevel(): number {
-    return 1;
+    return this.speedLevel;
   }
+
+  public speedLevel: number = 1;
 
   toString(): string {
     return 'langsam';
@@ -15,8 +17,10 @@ export class VectorArmsSpeedSlow extends VectorArmsSpeed {
 
 export class VectorArmsSpeedModerate extends VectorArmsSpeed {
   getSpeedLevel(): number {
-    return 2;
+    return this.speedLevel;
   }
+
+  public speedLevel: number = 2;
 
   toString(): string {
     return 'moderat';
@@ -25,8 +29,10 @@ export class VectorArmsSpeedModerate extends VectorArmsSpeed {
 
 export class VectorArmsSpeedFast extends VectorArmsSpeed {
   getSpeedLevel(): number {
-    return 3;
+    return this.speedLevel;
   }
+
+  public speedLevel: number = 3;
 
   toString(): string {
     return 'schnell';
