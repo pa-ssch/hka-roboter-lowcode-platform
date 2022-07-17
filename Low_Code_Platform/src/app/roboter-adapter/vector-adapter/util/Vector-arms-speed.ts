@@ -20,7 +20,7 @@ export class VectorArmsSpeedModerate extends VectorArmsSpeed {
     return this.speedLevel;
   }
 
-  public speedLevel: number = 2;
+  public speedLevel: number = 5;
 
   toString(): string {
     return 'moderat';
@@ -32,7 +32,7 @@ export class VectorArmsSpeedFast extends VectorArmsSpeed {
     return this.speedLevel;
   }
 
-  public speedLevel: number = 3;
+  public speedLevel: number = 10;
 
   toString(): string {
     return 'schnell';
