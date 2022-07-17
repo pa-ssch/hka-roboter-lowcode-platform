@@ -7,11 +7,21 @@ namespace VectorSDKMapper.Controllers.Data
     {
         private WorkflowElement[] _workflowData = Array.Empty<WorkflowElement>();
         private WorkflowElement[] _flatWorkflowData = Array.Empty<WorkflowElement>();
-        internal async Task PutWorkflow(WorkflowElement[] workflowData) => await Task.Run(() =>
+        internal async Task PutWorkflow(WorkflowElement[] workflowData)
         {
+            _currentExecutionStep = 0;
             _workflowData = workflowData;
             _flatWorkflowData = _workflowData.Flatten();
-        });
+        }
+
+        private static WorkflowManager? _instance;
+        public static WorkflowManager Get()
+        {
+            if (_instance == null)
+                _instance = new();
+
+            return _instance;
+        }
 
         internal async Task<ImagePreview[]> GetPreviewData()
         {
@@ -35,28 +45,34 @@ namespace VectorSDKMapper.Controllers.Data
 
         internal async Task<int> Execute()
         {
-            _ = ExecuteWorkflow();
+            if(_currentExecutionStep == 0)
+            {
+                _currentExecutionStep = 1;
+                ExecuteWorkflow();
+            }
+
             return await Task.Run(() => _currentExecutionStep);
         }
 
 
-        private int _currentExecutionStep;
+        private int _currentExecutionStep = 0;
         private async Task ExecuteWorkflow()
         {
-            if (_currentExecutionStep != 0)
-                return;
-
-            using var robot = await Robot.NewConnection();
+            var robot = await Anki.Vector.Robot.NewConnection();
             await robot.Control.RequestControl();
             await robot.Behavior.SetHeadAngle(-5.Degrees());
             await robot.Behavior.SetLiftHeight(0);
 
             foreach (var step in _flatWorkflowData)
             {
+                if (_currentExecutionStep == 0)
+                    return;
+
                 switch (step.Identifier)
                 {
                     case "drive":
-                        await robot.Behavior.DriveStraight((int)(step.Arguments[0].GetDouble() * 100), 1000);
+                        float.TryParse(step.Arguments[0].GetString(), out var distanceInCm);
+                        await robot.Behavior.DriveStraight(distanceInCm * 10, 1000, numRetries: 10);
                         break;
                     case "go-to-charger":
                         await robot.Behavior.DriveOnCharger();
@@ -73,26 +89,29 @@ namespace VectorSDKMapper.Controllers.Data
                         break;
                     case "lift-arms":
                         step.Arguments[0].TryGetProperty("speedLevel", out var liftSpeed);
-                        await robot.Motors.SetLiftMotor(10 * liftSpeed.GetInt32());
+                        await robot.Motors.SetLiftMotor(1 * liftSpeed.GetInt32());
                         break;
                     case "lower-arms":
                         step.Arguments[0].TryGetProperty("speedLevel", out var lowerSpeed);
-                        await robot.Motors.SetLiftMotor(-10 * lowerSpeed.GetInt32());
+                        await robot.Motors.SetLiftMotor(-1 * lowerSpeed.GetInt32());
                         break;
                     case "on-startup":
                         break;
                     case "rotate":
-                        await robot.Behavior.TurnInPlace(((float)step.Arguments[0].GetDouble()).Degrees());
+                        float.TryParse(step.Arguments[0].GetString(), out var rotationInDegrees);
+                        await robot.Behavior.TurnInPlace(rotationInDegrees.Degrees());
                         break;
                     case "wait":
                         await Task.Delay((int)(step.Arguments[0].GetDouble() * 1000));
                         break;
                 }
 
+                if (_currentExecutionStep == 0)
+                    return;
                 _currentExecutionStep++;
             }
 
-            _currentExecutionStep = 0;
+            _currentExecutionStep = -1;
         }
 
     }

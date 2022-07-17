@@ -78,7 +78,7 @@ export class VirtualDemoAdapterDefinition implements IRobotAdapter {
     this.currentWorkflows = workflows;
   }
 
-  getAvailablePreviews(): IPreviewGroup[] {
+  getAvailablePreviews(isExecutionmode: boolean = false): IPreviewGroup[] {
     let previews: IPreviewGroup[] = [];
 
     this.currentWorkflows.forEach((workflow, index) => {

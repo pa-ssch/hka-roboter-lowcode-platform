@@ -10,7 +10,7 @@ export interface IRobotAdapter {
   readonly functionality: IRobotFunctionality[];
   validateParameter(parameterValues: AdapterParameterType[]): Promise<string>;
   setNewWorkflows(workflows: IRobotFunctionality[][]): void;
-  getAvailablePreviews(): IPreviewGroup[];
+  getAvailablePreviews(isExecutionmode: boolean): IPreviewGroup[];
   supportsPreview(): boolean;
   /**
    * Triggers execution if execution is currently not running. Otherwise return the current step acording to the preview

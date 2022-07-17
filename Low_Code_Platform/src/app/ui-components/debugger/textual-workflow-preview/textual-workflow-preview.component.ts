@@ -14,13 +14,10 @@ export class TextualWorkflowPreviewComponent implements OnInit {
   currentStep: number = 0;
   robotIsOn: boolean = false;
 
-  constructor() {}
-
   ngOnInit(): void {
     if (!this.isPreviewMode) {
       this.robotIsOn = true;
-      // TODO: refresh current state permanently with an execute() call (delegate to previewdata)
-      //--> refresh the step number
+      this.checkExecutionStateContinuous();
     }
   }
 
@@ -40,5 +37,12 @@ export class TextualWorkflowPreviewComponent implements OnInit {
   step() {
     (<HTMLInputElement>document.getElementById('run-button')).disabled = true;
     this.currentStep++;
+  }
+
+  async checkExecutionStateContinuous() {
+    while (true) {
+      this.currentStep = (await this.previewData.GetCurrentStep()) - 1;
+      if (this.currentStep < 0) return;
+    }
   }
 }

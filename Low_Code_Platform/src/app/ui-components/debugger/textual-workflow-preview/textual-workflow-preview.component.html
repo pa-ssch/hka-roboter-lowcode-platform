@@ -7,10 +7,20 @@
   >
     Einschalten
   </button>
-  <button *ngIf="robotIsOn" id="run-button" mat-raised-button (click)="run()">
+  <button
+    *ngIf="robotIsOn && isPreviewMode"
+    id="run-button"
+    mat-raised-button
+    (click)="run()"
+  >
     Ausführen
   </button>
-  <button *ngIf="robotIsOn" id="step-button" mat-raised-button (click)="step()">
+  <button
+    *ngIf="robotIsOn && isPreviewMode"
+    id="step-button"
+    mat-raised-button
+    (click)="step()"
+  >
     Schritt ausführen
   </button>
 </div>

@@ -12,7 +12,8 @@
             {
                 return "";
 
-                //TODO: new VectorOnStartupFunctionality(),
+                //TODO: implement visual preview:
+                //new VectorOnStartupFunctionality(),
                 //new VectorWaitFunctionality(),
                 //new VectorDriveFunctionality(),
                 //new VectorRotateFunctionality(),
@@ -21,8 +22,6 @@
                 //new VectorGoToCubeFunctionality(),
                 //new VectorLiftArmsFunctionality(),
                 //new VectorLowerArmsFunctionality(),
-
-                //  würfel dabei oder nicht, ladestation, drehen (pfeil),  laufen
             }
         }
 

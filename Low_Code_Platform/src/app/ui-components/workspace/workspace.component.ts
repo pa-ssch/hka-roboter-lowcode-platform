@@ -43,7 +43,7 @@ export class WorkspaceComponent {
   openPreview() {
     let adapter = this.getCurrentRobotAdapter();
     adapter.setNewWorkflows(WorkflowManager.getWorkflows());
-    this.availablePreviews = adapter.getAvailablePreviews();
+    this.availablePreviews = adapter.getAvailablePreviews(false);
   }
 
   runWorkflows() {
@@ -51,11 +51,8 @@ export class WorkspaceComponent {
 
     let adapter = this.getCurrentRobotAdapter();
     adapter.setNewWorkflows(WorkflowManager.getWorkflows());
-    this.availablePreviews = adapter.getAvailablePreviews();
+    this.availablePreviews = adapter.getAvailablePreviews(true);
     adapter.execute();
-    this.availablePreviews.forEach(
-      (previewGroup) => (previewGroup.isExecutionMode = true)
-    );
   }
 
   saveWorkflows() {

@@ -40,6 +40,7 @@ export class VectorAdapterDefinition implements IRobotAdapter {
     new VectorLiftArmsFunctionality(),
     new VectorLowerArmsFunctionality(),
   ];
+  currentWorkflow: IRobotFunctionality[];
 
   async validateParameter(
     parameterValues: (string | number | boolean)[]
@@ -67,12 +68,19 @@ export class VectorAdapterDefinition implements IRobotAdapter {
   }
 
   setNewWorkflows(workflows: IRobotFunctionality[][]): void {
-    if (workflows.length == 1) VectorApi.putWorkflow(workflows[0]);
-    else throw new Error('Vector currently supports only one workflow');
+    if (workflows.length == 1) {
+      VectorApi.putWorkflow(workflows[0]);
+      this.currentWorkflow = workflows[0];
+    } else throw new Error('Vector currently supports only one workflow');
   }
 
-  getAvailablePreviews(): IPreviewGroup[] {
-    return [new VectorTextPreviewGroup(), new VectorVisualPreviewGroup()];
+  getAvailablePreviews(isExecutionmode: boolean): IPreviewGroup[] {
+    return [
+      new VectorTextPreviewGroup(
+        this.currentWorkflow,
+        isExecutionmode
+      ) /*, TODO: maybe implement visual preview: new VectorVisualPreviewGroup()*/,
+    ];
   }
 
   async execute(): Promise<number> {

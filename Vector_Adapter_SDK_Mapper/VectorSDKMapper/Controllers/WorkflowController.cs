@@ -8,19 +8,17 @@ namespace VectorSDKMapper.Controllers
     [Route("vector/[controller]")]
     public class WorkflowController : ControllerBase
     {
-        private readonly WorkflowManager _manager = new();
-
         [HttpGet(Name = "GetPreviewData")]
-        public async Task<ImagePreview[]> GetPreviewData() => await _manager.GetPreviewData();
+        public async Task<ImagePreview[]> GetPreviewData() => await WorkflowManager.Get().GetPreviewData();
 
         [HttpPut(Name = "PutWorkflow")]
         public async Task<IActionResult> PutWorkflow(WorkflowElement[] workflowData)
         {
-            await _manager.PutWorkflow(workflowData);
+            await WorkflowManager.Get().PutWorkflow(workflowData);
             return NoContent();
         }
 
         [HttpPost(Name = "ExecuteWorkflow")]
-        public async Task<int> ExecuteWorkflow() => await _manager.Execute();
+        public async Task<int> ExecuteWorkflow() => await WorkflowManager.Get().Execute();
     }
 }

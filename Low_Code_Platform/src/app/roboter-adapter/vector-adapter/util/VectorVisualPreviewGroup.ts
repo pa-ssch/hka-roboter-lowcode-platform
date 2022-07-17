@@ -10,5 +10,6 @@ export class VisualPreviewGroup implements IPreviewGroup {
   constructor() {
     // TODO: implement
     // Request the previewdata
+    // vector sdk mapper has to generate images
   }
 }
