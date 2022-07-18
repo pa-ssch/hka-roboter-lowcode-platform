@@ -7,7 +7,9 @@
   </button>
   <button mat-button *ngIf="false" (click)="saveWorkflows()">Speichern</button>
   <button mat-button *ngIf="false" (click)="fileUpload.click()">Öffnen</button>
-  <button mat-button (click)="logout()">Abmelden</button>
+  <button mat-button (click)="logout()" (contextmenu)="reset()">
+    Abmelden
+  </button>
 </div>
 <div id="main-content">
   <div id="designer-div" class="main-component-div">

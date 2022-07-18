@@ -7,6 +7,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { CookieManager } from 'src/app/app.cookiemanager';
 import { IRobotAdapter } from 'src/app/roboter-adapter/adapter-definition/interfaces/robot-adapter.interface';
 import { MatSelectChange } from '@angular/material/select';
+import * as shajs from 'sha.js';
 
 @Component({
   selector: 'app-startup-dialog',
@@ -47,7 +48,9 @@ export class StartupDialogComponent implements OnInit {
     );
     this._cookieService.set(
       CookieManager.MasterPasswordCookieName,
-      this.passwordFormGroup.value.masterPassword
+      shajs('sha256')
+        .update(this.passwordFormGroup.value.masterPassword)
+        .digest('hex')
     );
     let parameterValues = Object.values(this.parameterFormGroup.controls).map(
       (c) => c.value

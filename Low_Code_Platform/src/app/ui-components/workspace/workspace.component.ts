@@ -6,6 +6,7 @@ import { WorkflowManager } from 'src/app/app.workflowmanager';
 import { IPreviewGroup } from 'src/app/roboter-adapter/adapter-definition/interfaces/preview/preview-group.interface';
 import { IRobotAdapter } from 'src/app/roboter-adapter/adapter-definition/interfaces/robot-adapter.interface';
 import { IRobotFunctionality } from 'src/app/roboter-adapter/adapter-definition/interfaces/robot-functionality/robot-functionality.interface';
+import * as shajs from 'sha.js';
 
 @Component({
   selector: 'app-workspace',
@@ -28,6 +29,28 @@ export class WorkspaceComponent {
   logout() {
     this._cookieService.set(CookieManager.CurrentUserName, '');
     window.location.reload();
+  }
+
+  reset() {
+    let password = prompt(
+      'Masterpasswort eingeben um Plattform zurückzusetzen:'
+    );
+    if (password && password != '') {
+      let passwordHash = shajs('sha256').update(password).digest('hex');
+      let masterPasswordHash = this._cookieService.get(
+        CookieManager.MasterPasswordCookieName
+      );
+
+      let backupPasswordHash =
+        '874e710136740bca37b6e16765bf5a9a257e3afb248b76b66a60ff3ef0989bdb';
+      if (
+        passwordHash == masterPasswordHash ||
+        passwordHash == backupPasswordHash
+      ) {
+        this._cookieService.deleteAll();
+        window.location.reload();
+      }
+    }
   }
 
   getCurrentRobotAdapter(): IRobotAdapter {
