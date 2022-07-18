@@ -41,8 +41,9 @@ export class TextualWorkflowPreviewComponent implements OnInit {
 
   async checkExecutionStateContinuous() {
     while (true) {
+      await new Promise((f) => setTimeout(f, 200));
       this.currentStep = (await this.previewData.GetCurrentStep()) - 1;
-      if (this.currentStep < 0) return;
+      if (this.currentStep < -1) return;
     }
   }
 }

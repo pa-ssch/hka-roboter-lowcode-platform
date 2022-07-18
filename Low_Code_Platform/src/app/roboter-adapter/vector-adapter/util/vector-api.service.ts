@@ -26,7 +26,6 @@ export class VectorApiService {
 
   putWorkflow(workflow: IRobotFunctionality[]) {
     let transferable = workflow.map((e) => new TransferableWorkflowElement(e));
-    console.log(transferable);
     this.httpClient.put(this.url + 'vector/workflow', transferable).subscribe();
   }
 

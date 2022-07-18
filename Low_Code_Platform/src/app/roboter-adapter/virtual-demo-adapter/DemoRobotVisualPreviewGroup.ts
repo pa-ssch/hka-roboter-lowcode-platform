@@ -40,6 +40,8 @@ export class DemoRobotVisualPreviewGroup implements IPreviewGroup {
       });
     });
   }
+
+  kill() {}
 }
 
 export class ImagePreview {

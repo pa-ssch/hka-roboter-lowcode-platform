@@ -72,6 +72,8 @@ export class WorkspaceComponent {
   runWorkflows() {
     if (!this.executeAvailable) return;
 
+    if (this.availablePreviews) this.availablePreviews.forEach((p) => p.kill());
+
     let adapter = this.getCurrentRobotAdapter();
     adapter.setNewWorkflows(WorkflowManager.getWorkflows());
     this.availablePreviews = adapter.getAvailablePreviews(true);

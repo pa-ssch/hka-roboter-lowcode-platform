@@ -9,13 +9,13 @@ namespace VectorSDKMapper.Controllers
     public class WorkflowController : ControllerBase
     {
         [HttpPut(Name = "PutWorkflow")]
-        public async Task<IActionResult> PutWorkflow(WorkflowElement[] workflowData)
+        public IActionResult PutWorkflow(WorkflowElement[] workflowData)
         {
             WorkflowManager.Get().PutWorkflow(workflowData);
             return NoContent();
         }
 
         [HttpPost(Name = "ExecuteWorkflow")]
-        public async Task<int> ExecuteWorkflow() => await WorkflowManager.Get().Execute();
+        public int ExecuteWorkflow() => WorkflowManager.Get().Execute();
     }
 }

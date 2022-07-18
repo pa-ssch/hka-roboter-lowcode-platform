@@ -46,14 +46,27 @@ export class TextPreviewGroup implements IPreviewGroup {
     }
     return text;
   }
+
+  kill(): void {
+    this.previewData.kill();
+    this.previewData = null;
+  }
 }
 
 class TextPreviewData {
   script: ScriptElement[] = [];
   steps: number[] = [];
+  private _isDead: boolean = false;
 
   async GetCurrentStep(): Promise<number> {
+    if (this._isDead) {
+      return -1;
+    }
     return VectorApi.execute();
+  }
+
+  kill(): void {
+    this._isDead = true;
   }
 }
 

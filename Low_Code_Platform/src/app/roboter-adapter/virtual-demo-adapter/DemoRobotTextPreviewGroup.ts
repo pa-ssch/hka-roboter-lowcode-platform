@@ -45,6 +45,8 @@ export class DemoRobotTextPreviewGroup implements IPreviewGroup {
     }
     return text;
   }
+
+  kill() {}
 }
 
 class TextPreviewData {
