@@ -69,7 +69,7 @@ namespace VectorSDKMapper.Controllers.Data
 
             foreach (var step in _flatWorkflowData)
             {
-                if (_currentExecutionStep == 0)
+                if (_currentExecutionStep <= 0)
                     return;
 
                 switch (step.Identifier)
@@ -113,7 +113,7 @@ namespace VectorSDKMapper.Controllers.Data
                         break;
                 }
 
-                if (_currentExecutionStep == 0)
+                if (_currentExecutionStep <= 0)
                     return;
                 _currentExecutionStep++;
             }
