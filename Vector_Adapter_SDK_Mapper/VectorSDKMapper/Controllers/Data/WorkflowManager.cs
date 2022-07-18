@@ -106,11 +106,11 @@ namespace VectorSDKMapper.Controllers.Data
 
                     Interlocked.Increment(ref _currentExecutionStep);
                 }
-
-                Interlocked.Exchange(ref _currentExecutionStep, -1);
             }
             finally
             {
+                Interlocked.Exchange(ref _currentExecutionStep, -1);
+
                 if(lockWasSuccessful)
                     Monitor.Exit(_flatWorkflowData);
             }

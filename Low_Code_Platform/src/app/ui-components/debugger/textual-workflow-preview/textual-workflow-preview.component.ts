@@ -43,6 +43,7 @@ export class TextualWorkflowPreviewComponent implements OnInit {
     while (true) {
       await new Promise((f) => setTimeout(f, 200));
       this.currentStep = (await this.previewData.GetCurrentStep()) - 1;
+      console.log(`step: ${this.currentStep}`);
       if (this.currentStep < -1) return;
     }
   }
