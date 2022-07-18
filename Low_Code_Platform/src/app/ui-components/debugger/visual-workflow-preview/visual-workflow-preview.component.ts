@@ -20,8 +20,6 @@ export class VisualWorkflowPreviewComponent implements OnInit {
     if (!this.isPreviewMode) {
       this.currentImage = this.previewData[this.currentStep].src;
       this.currentStep = 1;
-      // TODO: refresh current state permanently with an execute() call (delegate to previewdata)
-      //--> refresh image
     }
   }
 

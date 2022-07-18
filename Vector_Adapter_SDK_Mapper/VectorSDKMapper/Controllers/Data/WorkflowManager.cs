@@ -7,7 +7,7 @@ namespace VectorSDKMapper.Controllers.Data
     {
         private WorkflowElement[] _workflowData = Array.Empty<WorkflowElement>();
         private WorkflowElement[] _flatWorkflowData = Array.Empty<WorkflowElement>();
-        internal async Task PutWorkflow(WorkflowElement[] workflowData)
+        internal void PutWorkflow(WorkflowElement[] workflowData)
         {
             _currentExecutionStep = 0;
             _workflowData = workflowData;
@@ -22,26 +22,7 @@ namespace VectorSDKMapper.Controllers.Data
 
             return _instance;
         }
-
-        internal async Task<ImagePreview[]> GetPreviewData()
-        {
-            return await Task.Run(() =>
-            {
-                var imagePreviewData = new ImagePreview[_flatWorkflowData.Length];
-
-                for (int i = 0; i < _flatWorkflowData.Length; i++)
-                {
-                    var currentWorkflowElement = _flatWorkflowData[i];
-
-                    imagePreviewData[i] = new ImagePreview(
-                        currentWorkflowElement.Identifier,
-                        currentWorkflowElement.Arguments.FirstOrDefault(),
-                        i > 0 ? imagePreviewData[i - 1] : null);
-                }
-
-                return imagePreviewData;
-            });
-        }
+      
 
         internal async Task<int> Execute()
         {
@@ -51,7 +32,7 @@ namespace VectorSDKMapper.Controllers.Data
                 {
                     Console.WriteLine(DateTime.Now.ToLongTimeString());
                     _currentExecutionStep = 1;
-                    ExecuteWorkflow();
+                    _ = ExecuteWorkflow();
                 }
             }
 
@@ -75,8 +56,8 @@ namespace VectorSDKMapper.Controllers.Data
                 switch (step.Identifier)
                 {
                     case "drive":
-                        float.TryParse(step.Arguments[0].GetString(), out var distanceInCm);
-                        await robot.Behavior.DriveStraight(distanceInCm * 10, 1000, numRetries: 10);
+                        if(float.TryParse(step.Arguments[0].GetString(), out var distanceInCm))
+                            await robot.Behavior.DriveStraight(distanceInCm * 10, 1000, numRetries: 10);
                         break;
                     case "go-to-charger":
                         await robot.Behavior.DriveOnCharger();
@@ -104,12 +85,12 @@ namespace VectorSDKMapper.Controllers.Data
                     case "on-startup":
                         break;
                     case "rotate":
-                        float.TryParse(step.Arguments[0].GetString(), out var rotationInDegrees);
-                        await robot.Behavior.TurnInPlace(rotationInDegrees.Degrees());
+                        if(float.TryParse(step.Arguments[0].GetString(), out var rotationInDegrees))
+                            await robot.Behavior.TurnInPlace(rotationInDegrees.Degrees());
                         break;
                     case "wait":
-                        float.TryParse(step.Arguments[0].GetString(), out var delay);
-                        await Task.Delay((int)(delay * 1000));
+                        if(float.TryParse(step.Arguments[0].GetString(), out var delay))
+                            await Task.Delay((int)(delay * 1000));
                         break;
                 }
 

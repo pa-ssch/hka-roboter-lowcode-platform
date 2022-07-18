@@ -73,12 +73,7 @@ export class VectorAdapterDefinition implements IRobotAdapter {
   }
 
   getAvailablePreviews(isExecutionmode: boolean): IPreviewGroup[] {
-    return [
-      new VectorTextPreviewGroup(
-        this.currentWorkflow,
-        isExecutionmode
-      ) /*, TODO: maybe implement visual preview: new VectorVisualPreviewGroup()*/,
-    ];
+    return [new VectorTextPreviewGroup(this.currentWorkflow, isExecutionmode)];
   }
 
   async execute(): Promise<number> {
