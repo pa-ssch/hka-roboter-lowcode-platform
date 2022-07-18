@@ -7,6 +7,16 @@ namespace VectorSDKMapper.Controllers
     public class VectorController : ControllerBase
     {
         [HttpGet(Name = "GetState")]
-        public async Task<ActionResult<string>> GetState() => await Task.Run(() => Content("connected"));
+        public async Task<ActionResult<string>> GetState()
+        {
+            try
+            {
+                return Content((await Anki.Vector.Robot.NewConnection()) == null ? "not-connected" : "connected");
+            }
+            catch (Anki.Vector.Exceptions.VectorNotFoundException)
+            {
+                return Content("not-connected");
+            }
+        }
     }
 }
