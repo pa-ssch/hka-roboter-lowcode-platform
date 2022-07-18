@@ -14,7 +14,6 @@ import { VectorOnStartupFunctionality } from './functionalities/on-startup.vecto
 import { VectorRotateFunctionality } from './functionalities/rotate.vector-functionality';
 import { VectorWaitFunctionality } from './functionalities/wait.vector-functionality';
 import { TextPreviewGroup as VectorTextPreviewGroup } from './util/VectorTextPreviewGroup';
-import { VisualPreviewGroup as VectorVisualPreviewGroup } from './util/VectorVisualPreviewGroup';
 import { VectorApi } from './vector-adapter.module';
 
 export class VectorAdapterDefinition implements IRobotAdapter {
@@ -26,7 +25,6 @@ export class VectorAdapterDefinition implements IRobotAdapter {
       'Adresse des Roboters',
       AdapterParameterType.string
     ),
-    new ParameterDefinition('Entwicklermodus', AdapterParameterType.boolean),
   ];
 
   functionality: IRobotFunctionality[] = [
